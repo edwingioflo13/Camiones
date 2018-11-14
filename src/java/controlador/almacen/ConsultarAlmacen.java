@@ -38,7 +38,7 @@ public class ConsultarAlmacen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Conexion cn = new Conexion();
-        ResultSet res = cn.ConsultarTodo();
+        ResultSet res = cn.ConsultarTodoAlmacen();
         ArrayList<Almacen> almacen = new ArrayList<Almacen>();
         if (res == null) {
             String error = "No existen datos";

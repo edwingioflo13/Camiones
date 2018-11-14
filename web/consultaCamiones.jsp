@@ -11,6 +11,8 @@
     ArrayList<Camion> camiones = (ArrayList<Camion>) request.getSession().getAttribute("camiones");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ include file="/templates/menu.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>

@@ -44,7 +44,7 @@
                             <a href="/Camiones/registroAlmacen.jsp">Registrar</a>
                         </li>
                         <li>
-                            <a href="/Camiones/consultaAlmacen.jsp">Buscar</a>
+                            <a href="/Camiones/consultar_almacen.do">Buscar</a>
                         </li>
                         <li>
                             <a href="/Camiones/modificarAlmacen.jsp">Editar</a>
@@ -90,7 +90,7 @@
                             <a href="/Camiones/RegistroCamiones.jsp">Registrar</a>
                         </li>
                         <li>
-                            <a href="/Camiones/consultaCamiones.jsp">Buscar</a>
+                            <a href="/Camiones/consultar_camiones.do">Buscar</a>
                         </li>
                         <li>
                             <a href="/Camiones/ModificarCamiones.jsp">Editar</a>
