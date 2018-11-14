@@ -11,15 +11,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.*;
+import modelo.Almacen;
+import modelo.Conexion;
 
 /**
  *
- * @author t4nk
+ * @author DIEGO ACOSTA
  */
-public class RegistroAlmacen extends HttpServlet {
+public class EliminarAlmacen extends HttpServlet {
 
-    /**
+     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -31,36 +32,27 @@ public class RegistroAlmacen extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String id = request.getParameter("txtId");
-        String nombre = request.getParameter("txtNombre");
-        String telefono = request.getParameter("txtTelefono");
-        String direccion = request.getParameter("txtDireccion");
-        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
-            String message = "Existen campos vacios. Intente Nuevamente";
+        Conexion cn = new Conexion();
+        Almacen almacen = new Almacen();
+        String codigo = request.getParameter("txtId");
+        boolean res = cn.ConsultarExisteA(almacen);
+        System.out.println(res);
+        if (!res) {
+            String message = "No se han encontrado coincidencias con el codigo del almacen. Intente nuevamente";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            return;
+            request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
         } else {
-
-            Conexion cn = new Conexion();
-            Almacen almacen = new Almacen();
-            almacen.setId(request.getParameter("txtId"));
-            almacen.setNombre(request.getParameter("txtNombre"));
-            almacen.setTelefono(request.getParameter("txtTelefono"));
-            almacen.setDireccion(request.getParameter("txtDireccion"));
-            System.out.println(almacen.toString());
-            
-            boolean res = cn.ConsultarExisteA(almacen);
-            if (!res) {
-                cn.insertarA(almacen);
-                String message = "El almacen ha sido registrado exitosamente";
+            int resultado = cn.eliminar(codigo);
+            if (resultado > 0) {
+                String message = "El almacen ha sido borrado con exito!";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
+                request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
             } else {
-                String message = "El id ya se encuentra regitrados en el sistema!";
+                String message = "Ha ocurrido un error. Intente nuevamente!";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
+                request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
             }
+
         }
     }
 

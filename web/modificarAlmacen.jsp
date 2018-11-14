@@ -1,7 +1,7 @@
 <%-- 
-    Document   : registroAlmacen
-    Created on : 13/11/2018, 20:37:48
-    Author     : t4nk
+    Document   : modificarAlmacen
+    Created on : 13-nov-2018, 22:55:12
+    Author     : DIEGO ACOSTA
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,48 +11,47 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="images/icono.ico" type="image/x-icon"/>
         <link rel="stylesheet" href="estilos2.css">
-
-        <title>Registrar Almacen</title>
+        <title>Registrar Almacenes</title>
         <script src="validaciones.js"></script>
         <script>
             function regresar()
             {
-                window.location = 'GestionarAlmacenes.jsp';
+                window.location = 'GestionaAlmacen.jsp';
             }
         </script>
     </head>
     <body>
-
-        <h1>Registro de Almaces:</h1>
-        <img src = "images/2.png" align="middle" width="400" height="300"/>
+        <h1>Ingrese los nuevos datos del almacen que desea modificar:</h1>
+        <img src = "images/4.png" align="middle" width="200" height="200"/>
         <br><br><br>
     <center>
-        <form action="registro_almacenes.do" method="post">
+        <form name="modificar" action="modifica_almacen.do" method="POST">
             <table>
                 <tr>
-                    <td>Id:</td>
+                    <td>Código:</td>
                     <td><input type="text" name="txtId" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
                 </tr>
                 <tr>
-                    <td>Nombre:</td>
+                    <td>Placa:</td>
                     <td><input type="text" name="txtNombre" placeholder="PYI0899" onkeypress="return validaLetrasyNumeros(event)"></td>
                 </tr>
                 <tr>
-                    <td>Telefono:</td>
+                    <td>Volumen:</td>
                     <td><input type="text" name="txtTelefono" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
-                    <td>Direccion:</td>
-                    <td><input type="text" name="txtDIreccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td>Peso:</td>
+                    <td><input type="text" name="txtDireccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
                 </tr>
               
             </table>
             <p><strong>${message}</strong></p>
             <br>
-            <input type="submit" value="Registrar...">
+            <input type="submit" value="Modificar...">
         </form>
     </center>
     <br><br>
     <button type="button" class=button onclick="regresar()">Regresar</button>
 </body>
 </html>
+

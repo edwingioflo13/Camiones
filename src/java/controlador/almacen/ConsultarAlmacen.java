@@ -5,19 +5,26 @@
  */
 package controlador.almacen;
 
+import controlador.camion.ConsultarCamiones;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.*;
+import modelo.Almacen;
+import modelo.Conexion;
 
 /**
  *
- * @author t4nk
+ * @author DIEGO ACOSTA
  */
-public class RegistroAlmacen extends HttpServlet {
+public class ConsultarAlmacen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,36 +37,23 @@ public class RegistroAlmacen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String id = request.getParameter("txtId");
-        String nombre = request.getParameter("txtNombre");
-        String telefono = request.getParameter("txtTelefono");
-        String direccion = request.getParameter("txtDireccion");
-        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
-            String message = "Existen campos vacios. Intente Nuevamente";
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            return;
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodo();
+        ArrayList<Almacen> almacen = new ArrayList<Almacen>();
+        if (res == null) {
+            String error = "No existen datos";
+            request.getSession().setAttribute("error", error);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
         } else {
-
-            Conexion cn = new Conexion();
-            Almacen almacen = new Almacen();
-            almacen.setId(request.getParameter("txtId"));
-            almacen.setNombre(request.getParameter("txtNombre"));
-            almacen.setTelefono(request.getParameter("txtTelefono"));
-            almacen.setDireccion(request.getParameter("txtDireccion"));
-            System.out.println(almacen.toString());
-            
-            boolean res = cn.ConsultarExisteA(almacen);
-            if (!res) {
-                cn.insertarA(almacen);
-                String message = "El almacen ha sido registrado exitosamente";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            } else {
-                String message = "El id ya se encuentra regitrados en el sistema!";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
+            try {
+                while (res.next()) {
+                    almacen.add(new Almacen(res.getInt("ID_ALMACEN"),
+                            res.getString("NOMBRE_ALMACEN"), res.getString("TELEFONO_ALMACEN"), res.getString("DIRECCION_ALMACEN")));
+                }
+                request.getSession().setAttribute("almacen", almacen);
+                request.getRequestDispatcher("consultaAlmacen.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

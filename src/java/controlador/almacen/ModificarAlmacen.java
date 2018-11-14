@@ -8,16 +8,17 @@ package controlador.almacen;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.*;
 
 /**
  *
- * @author t4nk
+ * @author DIEGO ACOSTA
  */
-public class RegistroAlmacen extends HttpServlet {
+@WebServlet(name = "ModificarAlmacen", urlPatterns = {"/modificar_almacen.do"})
+public class ModificarAlmacen extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,37 +31,18 @@ public class RegistroAlmacen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String id = request.getParameter("txtId");
-        String nombre = request.getParameter("txtNombre");
-        String telefono = request.getParameter("txtTelefono");
-        String direccion = request.getParameter("txtDireccion");
-        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
-            String message = "Existen campos vacios. Intente Nuevamente";
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            return;
-        } else {
-
-            Conexion cn = new Conexion();
-            Almacen almacen = new Almacen();
-            almacen.setId(request.getParameter("txtId"));
-            almacen.setNombre(request.getParameter("txtNombre"));
-            almacen.setTelefono(request.getParameter("txtTelefono"));
-            almacen.setDireccion(request.getParameter("txtDireccion"));
-            System.out.println(almacen.toString());
-            
-            boolean res = cn.ConsultarExisteA(almacen);
-            if (!res) {
-                cn.insertarA(almacen);
-                String message = "El almacen ha sido registrado exitosamente";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            } else {
-                String message = "El id ya se encuentra regitrados en el sistema!";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
-            }
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet ModificarAlmacen</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet ModificarAlmacen at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
