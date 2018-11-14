@@ -6,6 +6,7 @@
 
 <%@page import="modelo.Camion"%>
 <%@page import="java.util.ArrayList"%>
+
 <%
     ArrayList<Camion> camiones = (ArrayList<Camion>) request.getSession().getAttribute("camiones");
 %>
@@ -14,7 +15,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="shortcut icon" href="images/icono.ico" type="image/x-icon"/>
         <link rel="stylesheet" href="estilos2.css">
         <title>Consultar Camiones</title>
         <script>

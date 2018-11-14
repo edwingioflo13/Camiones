@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="/templates/menu.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,11 +21,11 @@
             }
         </script>
     </head>
-    <body>
 
-        <h1>Registro de camiones:</h1>
-        <img src = "images/2.png" align="middle" width="400" height="300"/>
-        <br><br><br>
+    <br><br><br><br>
+    <h1>Registro de camiones:</h1>
+    <img src = "images/2.png" align="middle" width="400" height="300"/>
+    <br><br><br>
     <center>
         <form action="registro_camiones.do" method="post">
             <table>
@@ -56,5 +57,5 @@
     </center>
     <br><br>
     <button type="button" class=button onclick="regresar()">Regresar</button>
-</body>
+
 </html>

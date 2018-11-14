@@ -10,6 +10,7 @@
     ArrayList<Almacen> almacen = (ArrayList<Almacen>) request.getSession().getAttribute("almacen");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ include file="/templates/menu.jsp" %>
 <!DOCTYPE html>
 <html>
     <head>
