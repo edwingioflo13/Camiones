@@ -16,6 +16,10 @@
         <servlet-name>EliminaCamiones</servlet-name>
         <servlet-class>controlador.camion.EliminaCamiones</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroAlmacen</servlet-name>
+        <servlet-class>controlador.almacen.RegistroAlmacen</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>EliminaCamiones</servlet-name>
         <url-pattern>/elimina_camiones.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroAlmacen</servlet-name>
+        <url-pattern>/registroAlmacen.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
