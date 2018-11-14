@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>RegistroCamiones</servlet-name>
+        <servlet-class>controlador.camion.RegistroCamiones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConsultarCamiones</servlet-name>
+        <servlet-class>controlador.camion.ConsultarCamiones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificaCamiones</servlet-name>
+        <servlet-class>controlador.camion.ModificaCamiones</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminaCamiones</servlet-name>
+        <servlet-class>controlador.camion.EliminaCamiones</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RegistroCamiones</servlet-name>
+        <url-pattern>/registro_camiones.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarCamiones</servlet-name>
+        <url-pattern>/consultar_camiones.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificaCamiones</servlet-name>
+        <url-pattern>/modifica_camiones.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminaCamiones</servlet-name>
+        <url-pattern>/elimina_camiones.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
