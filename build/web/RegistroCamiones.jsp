@@ -29,13 +29,15 @@
     <center>
         <form action="registro_camiones.do" method="post">
             <table>
-                <tr>
-                    <td>Código:</td>
-                    <td><input type="text" name="txtCodigo" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
-                </tr>
+
                 <tr>
                     <td>Placa:</td>
                     <td><input type="text" name="txtPlaca" placeholder="PYI0899" onkeypress="return validaLetrasyNumeros(event)"></td>
+                </tr>
+
+                <tr>
+                    <td>Código:</td>
+                    <td><input type="text" name="txtCodigo" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
                 </tr>
                 <tr>
                     <td>Volumen:</td>
@@ -56,6 +58,6 @@
         </form>
     </center>
     <br><br>
-   <%-- <button type="button" class=button onclick="regresar()">Regresar</button> --%>
+    <%-- <button type="button" class=button onclick="regresar()">Regresar</button> --%>
 
 </html>

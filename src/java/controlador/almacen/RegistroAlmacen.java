@@ -44,7 +44,7 @@ public class RegistroAlmacen extends HttpServlet {
 
             Conexion cn = new Conexion();
             Almacen almacen = new Almacen();
-            almacen.setId(request.getIntHeader("txtId"));
+            almacen.setId(Integer.valueOf(request.getParameter("txtId")));
             almacen.setNombre(request.getParameter("txtNombre"));
             almacen.setTelefono(request.getParameter("txtTelefono"));
             almacen.setDireccion(request.getParameter("txtDireccion"));
