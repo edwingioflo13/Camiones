@@ -56,6 +56,6 @@
         </form>
     </center>
     <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
+   <%-- <button type="button" class=button onclick="regresar()">Regresar</button> --%>
 
 </html>

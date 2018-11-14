@@ -27,23 +27,23 @@
         <img src = "images/4.png" align="middle" width="200" height="200"/>
         <br><br><br>
     <center>
-        <form name="modificar" action="modifica_almacen.do" method="POST">
+        <form name="modificar" action="modificar_almacen.do" method="POST">
             <table>
                 <tr>
-                    <td>Código:</td>
-                    <td><input type="text" name="txtId" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td>Id:</td>
+                    <td><input type="text" name="txtId" placeholder="001" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
-                    <td>Placa:</td>
-                    <td><input type="text" name="txtNombre" placeholder="PYI0899" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td>Nombre:</td>
+                    <td><input type="text" name="txtNombre" placeholder="Supermaxi" onkeypress="return validaLetras(event)"></td>
                 </tr>
                 <tr>
-                    <td>Volumen:</td>
-                    <td><input type="text" name="txtTelefono" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td>Telefono:</td>
+                    <td><input type="text" name="txtTelefono" placeholder="0999999999" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
-                    <td>Peso:</td>
-                    <td><input type="text" name="txtDireccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td>Direccion:</td>
+                    <td><input type="text" name="txtDireccion" placeholder="Sangolqui" onkeypress="return validaLetras(event)"></td>
                 </tr>
               
             </table>
@@ -53,7 +53,7 @@
         </form>
     </center>
     <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
+    <%-- <button type="button" class=button onclick="regresar()">Regresar</button> --%>
 </body>
 </html>
 

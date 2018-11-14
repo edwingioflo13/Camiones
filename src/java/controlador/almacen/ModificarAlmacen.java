@@ -42,7 +42,7 @@ public class ModificarAlmacen extends HttpServlet {
         if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("ModificarCamiones.jsp").forward(request, response);
+            request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
             return;
         } else {
             Conexion cn = new Conexion();
@@ -63,11 +63,11 @@ public class ModificarAlmacen extends HttpServlet {
                 if (resultado > 0) {
                     String message = "El almacen ha sido modificado con exito!";
                     request.setAttribute("message", message);
-                    request.getRequestDispatcher("ModificarAlmacen.jsp").forward(request, response);
+                    request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
                 } else {
                     String message = "Ha ocurrido un error. Intente nuevamente!";
                     request.setAttribute("message", message);
-                    request.getRequestDispatcher("ModificarAlmacen.jsp").forward(request, response);
+                    request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
                 }
 
             }

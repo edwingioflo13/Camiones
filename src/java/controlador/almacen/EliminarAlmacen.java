@@ -34,7 +34,7 @@ public class EliminarAlmacen extends HttpServlet {
 
         Conexion cn = new Conexion();
         Almacen almacen = new Almacen();
-        String codigo = request.getParameter("txtId");
+        String id = request.getParameter("txtId");
         boolean res = cn.ConsultarExisteAlmacen(almacen);
         System.out.println(res);
         if (!res) {
@@ -42,7 +42,7 @@ public class EliminarAlmacen extends HttpServlet {
             request.setAttribute("message", message);
             request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
         } else {
-            int resultado = cn.eliminar(codigo);
+            int resultado = cn.eliminar(id);
             if (resultado > 0) {
                 String message = "El almacen ha sido borrado con exito!";
                 request.setAttribute("message", message);

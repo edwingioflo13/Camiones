@@ -31,7 +31,7 @@
         <form name="eliminar" action="eliminar_almacen.do" method="POST"><table>
                 <tr>
                     <td>Código:</td>
-                    <td><input type="text" name="txtId" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td><input type="text" name="txtId" placeholder="001" onkeypress="return Numeros(event)"></td>
                 </tr>
             </table>
             <p><strong>${message}</strong>
@@ -42,7 +42,7 @@
     <br><br>
     
     <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
+   <%--  <button type="button" class=button onclick="regresar()">Regresar</button>--%>
 </body>
 </html>
 

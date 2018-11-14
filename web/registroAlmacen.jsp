@@ -25,27 +25,27 @@
     </head>
     <body>
 
-        <h1>Registro de Almaces:</h1>
+        <h1>Registro de Almacenes:</h1>
         <img src = "images/2.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
-        <form action="registro_almacenes.do" method="post">
+        <form action="registro_almacen.do" method="post">
             <table>
                 <tr>
                     <td>Id:</td>
-                    <td><input type="text" name="txtId" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td><input type="text" name="txtId" placeholder="001" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Nombre:</td>
-                    <td><input type="text" name="txtNombre" placeholder="PYI0899" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td><input type="text" name="txtNombre" placeholder="micomisariato" onkeypress="return validaLetras(event)"></td>
                 </tr>
                 <tr>
                     <td>Telefono:</td>
-                    <td><input type="text" name="txtTelefono" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtTelefono" placeholder="0999999999" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Direccion:</td>
-                    <td><input type="text" name="txtDireccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtDireccion" placeholder="El Ejido" onkeypress="return validaLetras(event)"></td>
                 </tr>
               
             </table>
@@ -55,6 +55,6 @@
         </form>
     </center>
     <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
+  <%--   <button type="button" class=button onclick="regresar()">Regresar</button>--%>
 </body>
 </html>
