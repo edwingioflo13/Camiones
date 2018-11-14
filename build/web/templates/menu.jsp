@@ -163,10 +163,10 @@
                             <a href="/Camiones/consultar_chofer.do">Buscar</a>
                         </li>
                         <li>
-                            <a href="#">Editar</a>
+                            <a href="/Camiones/modificarChofer.jsp">Editar</a>
                         </li>
                         <li>
-                            <a href="#">Eliminar</a>
+                            <a href="/Camiones/eliminarChofer.jsp">Eliminar</a>
                         </li>
                     </ul>
                 </li>

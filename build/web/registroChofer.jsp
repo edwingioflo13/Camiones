@@ -28,8 +28,8 @@
 
     <br><br><br><br>
     <h1>Registro de camiones:</h1>
-    <img src = "/Camiones/images/2.png" align="middle" width="400" height="300"/>
-    <br><br><br>
+    <img src = "images/7.png" align="middle" width="300" height="300"/>
+    <br><br>
     <center>
         <form action="registro_chofer.do" method="post">
             <table>
@@ -67,6 +67,7 @@
                     <td><input type="text" name="txtSueldo" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
                 </tr>
             </table>
+            <br>
             <p><strong>${message}</strong></p>
             <br>
             <input type="submit" value="Registrar...">

@@ -3,27 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador.camion;
+package controlador.usuario;
 
-/**
- *
- * @author t4nk
- */
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import modelo.Camion;
-import modelo.Conexion;
 
-public class EliminaCamiones extends HttpServlet {
+/**
+ *
+ * @author t4nk
+ */
+public class RegistroUsuario extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,28 +29,18 @@ public class EliminaCamiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Conexion cn = new Conexion();
-        Camion camion = new Camion();
-        String placa = request.getParameter("txtPlaca");
-        camion.setPlaca(placa);
-        boolean res = cn.ConsultarExiste(camion);
-        System.out.println(res);
-        if (!res) {
-            String message = "No se han encontrado coincidencias con el codigo del camion. Intente nuevamente";
-            request.setAttribute("message", message);
-            request.getRequestDispatcher("EliminarCamiones.jsp").forward(request, response);
-        } else {
-            int resultado = cn.eliminar(placa);
-            if (resultado > 0) {
-                String message = "El camion ha sido borrado con exito!";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("EliminarCamiones.jsp").forward(request, response);
-            } else {
-                String message = "Ha ocurrido un error. Intente nuevamente!";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("EliminarCamiones.jsp").forward(request, response);
-            }
-
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet RegistroUsuario</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet RegistroUsuario at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 

@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="images/icono.ico" type="image/x-icon"/>
         <link rel="stylesheet" href="estilos2.css">
-        <title>Registrar Camiones</title>
+        <title>Modificar Camiones</title>
         <script src="validaciones.js"></script>
         <script>
             function regresar()

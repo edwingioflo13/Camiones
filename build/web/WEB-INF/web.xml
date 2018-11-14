@@ -48,6 +48,30 @@
         <servlet-name>RegistroChofer</servlet-name>
         <servlet-class>controlador.chofer.RegistroChofer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EliminarChofer</servlet-name>
+        <servlet-class>controlador.chofer.EliminarChofer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarChofer</servlet-name>
+        <servlet-class>controlador.chofer.ModificarChofer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <servlet-class>controlador.usuario.RegistroUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConsultarUsuario</servlet-name>
+        <servlet-class>controlador.usuario.ConsultarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <servlet-class>controlador.usuario.EliminarUsuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ModificarUsuario</servlet-name>
+        <servlet-class>controlador.usuario.ModificarUsuario</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -95,6 +119,30 @@
     <servlet-mapping>
         <servlet-name>RegistroChofer</servlet-name>
         <url-pattern>/registro_chofer.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarChofer</servlet-name>
+        <url-pattern>/eliminar_chofer.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarChofer</servlet-name>
+        <url-pattern>/modificar_chofer.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroUsuario</servlet-name>
+        <url-pattern>/registro_usuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarUsuario</servlet-name>
+        <url-pattern>/consultar_usuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarUsuario</servlet-name>
+        <url-pattern>/eliminar_usuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarUsuario</servlet-name>
+        <url-pattern>/modificar_usuario.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

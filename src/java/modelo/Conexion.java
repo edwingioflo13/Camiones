@@ -38,7 +38,7 @@ public class Conexion {
         int bandera = 0;
         try {
             String query = "INSERT INTO CAMION(MATRICULA_CAMION, CEDULA_CHOFER, VOLUMEN_CAMION, PESO_CAMION, ESTADO_CAMION)"
-                    + "VALUES('" + c.getPlaca() + "','" + c.getChofer().getCedula()+"'," + c.getVolumen() + "," + c.getPeso() + ",'" + c.getEstado() + "')";
+                    + "VALUES('" + c.getPlaca() + "','" + c.getChofer().getCedula() + "'," + c.getVolumen() + "," + c.getPeso() + ",'" + c.getEstado() + "')";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -72,12 +72,12 @@ public class Conexion {
         }
         return bandera;
     }
-    
+
     public int insertarChofer(Chofer c) {
         int bandera = 0;
         try {
             String query = "INSERT INTO CHOFER(CEDULA_CHOFER, NOMBRE_CHOFER, APELLIDO_CHOFER, DIRECCION_CHOFER, LICENCIA_CHOFER, SUELDO_CHOFER)"
-                    + "VALUES('" + c.getCedula() + "','" + c.getNombre()+"','" + c.getApellido() + "','" + c.getDireccion() + "','" + c.getLicencia()+ "'," + c.getSueldo() + ")";
+                    + "VALUES('" + c.getCedula() + "','" + c.getNombre() + "','" + c.getApellido() + "','" + c.getDireccion() + "','" + c.getLicencia() + "'," + c.getSueldo() + ")";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -85,7 +85,7 @@ public class Conexion {
         }
         return bandera;
     }
-    
+
     public ResultSet ConsultarTodo() {
         try {
             String query = "SELECT * FROM camion";
@@ -107,8 +107,6 @@ public class Conexion {
         }
         return res;
     }
-    
-
 
     public ResultSet ConsultarTodoTienda() {
         try {
@@ -120,7 +118,7 @@ public class Conexion {
         }
         return res;
     }
-    
+
     public ResultSet ConsultarTodoChofer() {
         try {
             String query = "SELECT * FROM CHOFER";
@@ -159,7 +157,7 @@ public class Conexion {
         }
         return false;
     }
-    
+
     public boolean ConsultarExisteChofer(Chofer c) {
         try {
             String query = "SELECT * FROM CHOFER where CEDULA_CHOFER='" + c.getCedula() + "'";
@@ -174,7 +172,7 @@ public class Conexion {
         return false;
     }
 
-     public boolean ConsultarExisteTienda(Tienda c) {
+    public boolean ConsultarExisteTienda(Tienda c) {
         try {
             String query = "SELECT * FROM tienda where id_tienda='" + c.getId() + "'";
             state = cnn.createStatement();
@@ -187,8 +185,7 @@ public class Conexion {
         }
         return false;
     }
-    
-    
+
     public int modificar(Camion c) {
         int bandera = 0;
         try {
@@ -220,7 +217,7 @@ public class Conexion {
         return bandera;
     }
 
-      public int modificarTienda(Tienda c) {
+    public int modificarTienda(Tienda c) {
         int bandera = 0;
         try {
             String query = "UPDATE TIENDA SET"
@@ -235,7 +232,24 @@ public class Conexion {
         }
         return bandera;
     }
-    
+
+    public int modificarChofer(Chofer c) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE CHOFER SET"
+                    + " NOMBRE_CHOFER = '" + c.getNombre() + "',"
+                    + " APELLIDO_CHOFER = '" + c.getApellido() + "',"
+                    + " DIRECCION_CHOFER = '" + c.getDireccion() + "',"
+                    + " SUELDO_CHOFER = " + c.getSueldo() + ","
+                    + " LICENCIA_CHOFER = '" + c.getLicencia() + "' WHERE CEDULA_CHOFER = '" + c.getCedula() + "';";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
     public int eliminar(String cod) {
         int bandera = 0;
         try {
@@ -261,11 +275,24 @@ public class Conexion {
         }
         return bandera;
     }
- 
-     public int eliminarTienda(String cod) {
+
+    public int eliminarTienda(String cod) {
         int bandera = 0;
         try {
             String query = "DELETE FROM tienda WHERE ID_TIENDA = '" + cod + "'";
+            System.out.println(query);
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public int eliminarChofer(String cedula) {
+        int bandera = 0;
+        try {
+            String query = "DELETE FROM CHOFER WHERE CEDULA_CHOFER = '" + cedula + "'";
             System.out.println(query);
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);

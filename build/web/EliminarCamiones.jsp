@@ -29,8 +29,8 @@
     <center>
         <form name="eliminar" action="elimina_camiones.do" method="POST"><table>
                 <tr>
-                    <td>Código:</td>
-                    <td><input type="text" name="txtCodigo" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
+                    <td>Placa:</td>
+                    <td><input type="text" name="txtPlaca" placeholder="PYI0889" onkeypress="return validaLetrasyNumeros(event)"></td>
                 </tr>
             </table>
             <p><strong>${message}</strong>
