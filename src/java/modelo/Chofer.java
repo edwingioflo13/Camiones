@@ -19,18 +19,18 @@ public class Chofer {
     private String apellido;
     private String direccion;
     private String licencia;
-    private Date nacimiento;
+    private float sueldo;
 
     public Chofer() {
     }
 
-    public Chofer(String cedula, String nombre, String apellido, String direccion, String licencia, Date nacimiento) {
+    public Chofer(String cedula, String nombre, String apellido, String direccion, String licencia, float sueldo) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.licencia = licencia;
-        this.nacimiento = nacimiento;
+        this.sueldo = sueldo;
     }
 
     public String getCedula() {
@@ -73,17 +73,17 @@ public class Chofer {
         this.licencia = licencia;
     }
 
-    public Date getNacimiento() {
-        return nacimiento;
+    public float getSueldo() {
+        return sueldo;
     }
 
-    public void setNacimiento(Date nacimiento) {
-        this.nacimiento = nacimiento;
+    public void setSueldo(float sueldo) {
+        this.sueldo = sueldo;
     }
 
     @Override
     public String toString() {
-        return "Chofer{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", licencia=" + licencia + ", nacimiento=" + nacimiento + '}';
+        return "Chofer{" + "cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", licencia=" + licencia + ", sueldo=" + sueldo + '}';
     }
     
     

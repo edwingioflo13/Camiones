@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2018 a las 02:50:55
+-- Tiempo de generación: 14-11-2018 a las 22:48:06
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -33,6 +33,13 @@ CREATE TABLE `almacen` (
   `DIRECCION_ALMACEN` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `almacen`
+--
+
+INSERT INTO `almacen` (`ID_ALMACEN`, `NOMBRE_ALMACEN`, `TELEFONO_ALMACEN`, `DIRECCION_ALMACEN`) VALUES
+(1, '1', '996108754', 'JUAN CUEVA, ADRIAN NAVARRO');
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +63,7 @@ INSERT INTO `camion` (`MATRICULA_CAMION`, `CEDULA_CHOFER`, `VOLUMEN_CAMION`, `PE
 ('LJK0832', '1900481357', 1500, 5256, 'ACTIVO'),
 ('PEA0123', '1900481357', 2000, 6000, 'ACTIVO'),
 ('PYI0899', '1900481357', 1000, 4000, 'ACTIVO'),
+('sasas', '1900481357', 12, 12, 'ACTIVO'),
 ('TDI0124', '1900481357', 1300, 5200, 'INACTIVO');
 
 -- --------------------------------------------------------
@@ -68,17 +76,18 @@ CREATE TABLE `chofer` (
   `CEDULA_CHOFER` varchar(10) NOT NULL,
   `NOMBRE_CHOFER` varchar(20) DEFAULT NULL,
   `APELLIDO_CHOFER` varchar(20) DEFAULT NULL,
-  `DIRECCION_CHOFER` varchar(20) DEFAULT NULL,
+  `DIRECCION_CHOFER` varchar(100) DEFAULT NULL,
   `LICENCIA_CHOFER` varchar(10) DEFAULT NULL,
-  `FECHANAC_CHOFER` date DEFAULT NULL
+  `SUELDO_CHOFER` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `chofer`
 --
 
-INSERT INTO `chofer` (`CEDULA_CHOFER`, `NOMBRE_CHOFER`, `APELLIDO_CHOFER`, `DIRECCION_CHOFER`, `LICENCIA_CHOFER`, `FECHANAC_CHOFER`) VALUES
-('1900481357', 'Edwin', 'Flores', 'La Recoleta', 'B', '1996-06-13');
+INSERT INTO `chofer` (`CEDULA_CHOFER`, `NOMBRE_CHOFER`, `APELLIDO_CHOFER`, `DIRECCION_CHOFER`, `LICENCIA_CHOFER`, `SUELDO_CHOFER`) VALUES
+('1708761703', 'EDWIN', 'FLORES', 'LA RECOLETA', 'A', 100),
+('1900481357', 'Edwin', 'Flores', 'La Recoleta', 'B', 19960600);
 
 -- --------------------------------------------------------
 

@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador.camion;
+package controlador.chofer;
 
+import controlador.camion.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
@@ -13,9 +14,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.faces.application.FacesMessage;
-
-import javax.faces.application.FacesMessage;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,7 +26,7 @@ import modelo.Conexion;
  *
  * @author t4nk
  */
-public class RegistroCamiones extends HttpServlet {
+public class RegistroChofer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,34 +39,37 @@ public class RegistroCamiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String placa = request.getParameter("txtPlaca");
-        String volumen = request.getParameter("txtVolumen");
-        String peso = request.getParameter("txtPeso");
-        if (placa.equals("") || volumen.equals("") || peso.equals("") ) {
+        String cedula = request.getParameter("txtCedula");
+        String nombre = request.getParameter("txtNombre");
+        String apellido = request.getParameter("txtApellido");
+        String direccion = request.getParameter("txtDireccion");
+        String licencia = request.getParameter("txtLicencia");
+        String sueldo = request.getParameter("txtSueldo");
+        if (cedula.equals("") || nombre.equals("") || apellido.equals("") || direccion.equals("") || licencia.equals("") || sueldo.equals("")) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("RegistroCamiones.jsp").forward(request, response);
+            request.getRequestDispatcher("registroChofer.jsp").forward(request, response);
             return;
         } else {
-
             Conexion cn = new Conexion();
-            Camion camion = new Camion();
-            camion.setPlaca(request.getParameter("txtPlaca"));
-            camion.setVolumen(Float.parseFloat(request.getParameter("txtVolumen")));
-            camion.setPeso(Float.parseFloat(request.getParameter("txtPeso")));
-            camion.setEstado(request.getParameter("txtEstado"));
-            camion.getChofer().setCedula(request.getParameter("txtChofer"));
-            System.out.println(camion.toString());
-            boolean res = cn.ConsultarExiste(camion);
+            Chofer chofer = new Chofer();
+            chofer.setCedula(cedula);
+            chofer.setNombre(nombre);
+            chofer.setApellido(apellido);
+            chofer.setDireccion(direccion);
+            chofer.setLicencia(licencia);
+            chofer.setSueldo(Float.parseFloat(sueldo));
+            System.out.println(chofer.toString());
+            boolean res = cn.ConsultarExisteChofer(chofer);
             if (!res) {
-                cn.insertar(camion);
-                String message = "El camion ha sido registrado exitosamente";
+                cn.insertarChofer(chofer);
+                String message = "El chofer ha sido registrado exitosamente";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("RegistroCamiones.jsp").forward(request, response);
+                request.getRequestDispatcher("registroChofer.jsp").forward(request, response);
             } else {
-                String message = "El codigo o placa ya se encuentra regitrados en el sistema!";
+                String message = "El chofer ya se encuentra regitrado en el sistema!";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("RegistroCamiones.jsp").forward(request, response);
+                request.getRequestDispatcher("registroChofer.jsp").forward(request, response);
             }
         }
     }

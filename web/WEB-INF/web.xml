@@ -40,6 +40,14 @@
         <servlet-name>ConsultarTienda</servlet-name>
         <servlet-class>controlador.tienda.ConsultarTienda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsultarChofer</servlet-name>
+        <servlet-class>controlador.chofer.ConsultarChofer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistroChofer</servlet-name>
+        <servlet-class>controlador.chofer.RegistroChofer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>ConsultarTienda</servlet-name>
         <url-pattern>/consultar_tienda.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarChofer</servlet-name>
+        <url-pattern>/consultar_chofer.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroChofer</servlet-name>
+        <url-pattern>/registro_chofer.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

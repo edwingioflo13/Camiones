@@ -73,6 +73,19 @@ public class Conexion {
         return bandera;
     }
     
+    public int insertarChofer(Chofer c) {
+        int bandera = 0;
+        try {
+            String query = "INSERT INTO CHOFER(CEDULA_CHOFER, NOMBRE_CHOFER, APELLIDO_CHOFER, DIRECCION_CHOFER, LICENCIA_CHOFER, SUELDO_CHOFER)"
+                    + "VALUES('" + c.getCedula() + "','" + c.getNombre()+"','" + c.getApellido() + "','" + c.getDireccion() + "','" + c.getLicencia()+ "'," + c.getSueldo() + ")";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+    
     public ResultSet ConsultarTodo() {
         try {
             String query = "SELECT * FROM camion";
@@ -94,6 +107,8 @@ public class Conexion {
         }
         return res;
     }
+    
+
 
     public ResultSet ConsultarTodoTienda() {
         try {
@@ -134,6 +149,20 @@ public class Conexion {
     public boolean ConsultarExisteAlmacen(Almacen c) {
         try {
             String query = "SELECT * FROM almacen where id_almacen='" + c.getId() + "'";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    public boolean ConsultarExisteChofer(Chofer c) {
+        try {
+            String query = "SELECT * FROM CHOFER where CEDULA_CHOFER='" + c.getCedula() + "'";
             state = cnn.createStatement();
             res = state.executeQuery(query);
             while (res.next()) {

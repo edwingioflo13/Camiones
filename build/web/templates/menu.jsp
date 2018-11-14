@@ -64,16 +64,16 @@
                     <!-- Level Two-->
                     <ul>
                         <li>
-                            <a href="#">Registrar</a>
+                            <a href="/Camiones/registroTienda.jsp">Registrar</a>
                         </li>
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="/Camiones/consultar_tienda.do">Buscar</a>
                         </li>
                         <li>
-                            <a href="#">Editar</a>
+                            <a href="/Camiones/registroTienda.jsp">Editar</a>
                         </li>
                         <li>
-                            <a href="#">Eliminar</a>
+                            <a href="/Camiones/registroTienda.jsp">Eliminar</a>
                         </li>
                     </ul>
                 </li>
@@ -157,10 +157,10 @@
                     <!-- Level Two-->
                     <ul>
                         <li>
-                            <a href="#">Registrar</a>
+                            <a href="/Camiones/registroChofer.jsp">Registrar</a>
                         </li>
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="/Camiones/consultar_chofer.do">Buscar</a>
                         </li>
                         <li>
                             <a href="#">Editar</a>
