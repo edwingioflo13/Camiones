@@ -45,7 +45,7 @@ public class ModificarUsuario extends HttpServlet {
             usuario.setId(id);
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
-            usuario.setPass(pass);
+            usuario.setPass(cn.sha256(pass));
             System.out.println(usuario.toString());
             boolean res = cn.ConsultarExisteUsuario(usuario);
             System.out.println(res);
