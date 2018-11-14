@@ -51,7 +51,7 @@ public class Conexion {
         int bandera = 0;
         try {
             String query = "INSERT INTO ALMACEN(ID_ALMACEN, NOMBRE_ALMACEN, TELEFONO_ALMACEN, DIRECCION_ALMACEN)"
-                    + "VALUES('" + c.getId() + "'," + c.getNombre() + "," + c.getTelefono() + ",'" + c.getDireccion() + "')";
+                    + "VALUES(" + c.getId() + ",'" + c.getNombre() + "','" + c.getTelefono() + "','" + c.getDireccion() + "')";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -60,6 +60,19 @@ public class Conexion {
         return bandera;
     }
 
+    public int insertarTienda(Tienda c) {
+        int bandera = 0;
+        try {
+            String query = "INSERT INTO TIENDA(ID_TIENDA, NOMBRE_TIENDA, TELEFONO_TIENDA, DIRECCION_TIENDA)"
+                    + "VALUES(" + c.getId() + ",'" + c.getNombre() + "','" + c.getTelefono() + "','" + c.getDireccion() + "')";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+    
     public ResultSet ConsultarTodo() {
         try {
             String query = "SELECT * FROM camion";
@@ -74,6 +87,17 @@ public class Conexion {
     public ResultSet ConsultarTodoAlmacen() {
         try {
             String query = "SELECT * FROM ALMACEN";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    public ResultSet ConsultarTodoTienda() {
+        try {
+            String query = "SELECT * FROM TIENDA";
             state = cnn.createStatement();
             res = state.executeQuery(query);
         } catch (SQLException ex) {
@@ -109,7 +133,7 @@ public class Conexion {
 
     public boolean ConsultarExisteAlmacen(Almacen c) {
         try {
-            String query = "SELECT * FROM almacen where id_almacen='" + c.getDireccion() + "'";
+            String query = "SELECT * FROM almacen where id_almacen='" + c.getId() + "'";
             state = cnn.createStatement();
             res = state.executeQuery(query);
             while (res.next()) {
@@ -121,6 +145,21 @@ public class Conexion {
         return false;
     }
 
+     public boolean ConsultarExisteTienda(Tienda c) {
+        try {
+            String query = "SELECT * FROM tienda where id_tienda='" + c.getId() + "'";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+    
+    
     public int modificar(Camion c) {
         int bandera = 0;
         try {
@@ -152,6 +191,22 @@ public class Conexion {
         return bandera;
     }
 
+      public int modificarTienda(Tienda c) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE TIENDA SET"
+                    + " ID_TIENDA = '" + c.getId() + "',"
+                    + " NOMBRE_TIENDA = '" + c.getNombre() + "',"
+                    + " TELEFONO_TIENDA = '" + c.getTelefono() + "',"
+                    + " DIRECCION_TIENDA = '" + c.getDireccion() + "' WHERE ID_TIENDA = '" + c.getId() + "';";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+    
     public int eliminar(String cod) {
         int bandera = 0;
         try {
@@ -165,4 +220,29 @@ public class Conexion {
         return bandera;
     }
 
+    public int eliminaraAlmacen(String cod) {
+        int bandera = 0;
+        try {
+            String query = "DELETE FROM almacen WHERE ID_ALMACEN = '" + cod + "'";
+            System.out.println(query);
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+ 
+     public int eliminarTienda(String cod) {
+        int bandera = 0;
+        try {
+            String query = "DELETE FROM tienda WHERE ID_TIENDA = '" + cod + "'";
+            System.out.println(query);
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
 }

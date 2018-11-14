@@ -28,9 +28,17 @@
         <servlet-name>EliminarAlmacen</servlet-name>
         <servlet-class>controlador.almacen.EliminarAlmacen</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ModificarAlmacen</servlet-name>
         <servlet-class>controlador.almacen.ModificarAlmacen</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistroTienda</servlet-name>
+        <servlet-class>controlador.tienda.RegistroTienda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ConsultarTienda</servlet-name>
+        <servlet-class>controlador.tienda.ConsultarTienda</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
@@ -60,9 +68,17 @@
         <servlet-name>EliminarAlmacen</servlet-name>
         <url-pattern>/eliminar_almacen.do</url-pattern>
     </servlet-mapping>
-     <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>ModificarAlmacen</servlet-name>
         <url-pattern>/modificar_almacen.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroTienda</servlet-name>
+        <url-pattern>/registro_tienda.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultarTienda</servlet-name>
+        <url-pattern>/consultar_tienda.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

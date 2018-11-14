@@ -19,6 +19,15 @@ public class Tienda {
     public Tienda() {
     }
 
+    public Tienda(int id, String nombre, String telefono, String direccion) {
+        this.id = id;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
