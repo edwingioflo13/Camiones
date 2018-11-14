@@ -16,6 +16,14 @@
             {
                 window.location='GestionarCamiones.jsp';
             }
+            function llamarGA()
+            {
+                window.location='GestionarAlmacen.jsp';
+            }
+            function llamarGT()
+            {
+                window.location='GestionarTienda.jsp';
+            }
         </script>
     </head>
     <body>

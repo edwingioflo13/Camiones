@@ -38,7 +38,7 @@
     </head>
     <body>
         <h1>Gestionar Almacenes</h1>
-        <img src = "images/1.png" align="middle" width="500" height="300"/>
+        <img src = "images/6.png" align="middle" width="500" height="300"/>
         <br><br>
         <button type="button" class=button onclick="registrar()">Registrar</button>
         <br><br>
