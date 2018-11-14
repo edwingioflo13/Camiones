@@ -5,12 +5,21 @@
  */
 package controlador.usuario;
 
+import controlador.chofer.ConsultarChofer;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Chofer;
+import modelo.Conexion;
+import modelo.Usuario;
 
 /**
  *
@@ -29,18 +38,23 @@ public class ConsultarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ConsultarUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ConsultarUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodoUsuario();
+        ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
+        if (res == null) {
+            String error = "No existen datos";
+            request.getSession().setAttribute("error", error);
+            request.getRequestDispatcher("error.jsp").forward(request, response);
+        } else {
+            try {
+                while (res.next()) {
+                    usuarios.add(new Usuario(res.getString("ID_USUARIO"), res.getString("PASS_USUARIO"), res.getString("NOMBRE_USUARIO"), res.getString("APELLIDO_USUARIO")));
+                }
+                request.getSession().setAttribute("usuarios", usuarios);
+                request.getRequestDispatcher("consultaUsuario.jsp").forward(request, response);
+            } catch (SQLException ex) {
+                Logger.getLogger(ConsultarUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 

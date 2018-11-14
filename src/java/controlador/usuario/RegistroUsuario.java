@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Conexion;
+import modelo.Usuario;
 
 /**
  *
@@ -29,18 +31,34 @@ public class RegistroUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet RegistroUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet RegistroUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String id = request.getParameter("txtId");
+        String nombre = request.getParameter("txtNombre");
+        String apellido = request.getParameter("txtApellido");
+        String pass = request.getParameter("txtPass");
+        if (id.equals("") || nombre.equals("") || apellido.equals("") || pass.equals("")) {
+            String message = "Existen campos vacios. Intente Nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("registroUsuario.jsp").forward(request, response);
+            return;
+        } else {
+            Conexion cn = new Conexion();
+            Usuario usuario= new Usuario();
+            usuario.setId(id);
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setPass(pass);
+            System.out.println(usuario.toString());
+            boolean res = cn.ConsultarExisteUsuario(usuario);
+            if (!res) {
+                cn.insertarUsuario(usuario);
+                String message = "El usuario ha sido registrado exitosamente";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("registroUsuario.jsp").forward(request, response);
+            } else {
+                String message = "El usuario ya se encuentra regitrado en el sistema!";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("registroUsuario.jsp").forward(request, response);
+            }
         }
     }
 

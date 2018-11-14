@@ -22,7 +22,7 @@
         <!-- Ace Responsive Menu -->
         <nav>
             <!-- Menu Toggle btn-->
-            
+
             <!-- Responsive Menu Structure-->
             <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
@@ -54,7 +54,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -77,7 +77,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -101,7 +101,7 @@
                     </ul>
                 </li>
 
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -124,7 +124,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -147,7 +147,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -170,7 +170,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
@@ -180,21 +180,21 @@
                     <!-- Level Two-->
                     <ul>
                         <li>
-                            <a href="#">Registrar</a>
+                            <a href="/Camiones/registroUsuario.jsp">Registrar</a>
                         </li>
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="/Camiones/consultar_usuario.do">Buscar</a>
                         </li>
                         <li>
-                            <a href="#">Editar</a>
+                            <a href="/Camiones/modificarUsuario.jsp">Editar</a>
                         </li>
                         <li>
-                            <a href="#">Eliminar</a>
+                            <a href="/Camiones/eliminarUsuario.jsp">Eliminar</a>
                         </li>
                     </ul>
                 </li>
-                
-                
+
+
             </ul>
         </nav>
         <!--Plugin Initialization-->

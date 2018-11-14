@@ -27,7 +27,7 @@
     </head>
 
     <br><br><br><br>
-    <h1>Registro de camiones:</h1>
+    <h1>Registro de Choferes:</h1>
     <img src = "images/7.png" align="middle" width="300" height="300"/>
     <br><br>
     <center>

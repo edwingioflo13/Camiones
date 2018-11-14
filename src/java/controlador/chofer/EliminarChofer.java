@@ -37,7 +37,7 @@ public class EliminarChofer extends HttpServlet {
         boolean res = cn.ConsultarExisteChofer(chofer);
         System.out.println(res);
         if (!res) {
-            String message = "No se han encontrado coincidencias con el codigo del chofer. Intente nuevamente";
+            String message = "No se han encontrado coincidencias con la cedula del chofer. Intente nuevamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("eliminarChofer.jsp").forward(request, response);
         } else {
@@ -49,7 +49,7 @@ public class EliminarChofer extends HttpServlet {
             } else {
                 String message = "Ha ocurrido un error. Intente nuevamente!";
                 request.setAttribute("message", message);
-                request.getRequestDispatcher("eliminarCamiones.jsp").forward(request, response);
+                request.getRequestDispatcher("eliminarChofer.jsp").forward(request, response);
             }
 
         }

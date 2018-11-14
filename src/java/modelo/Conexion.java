@@ -301,4 +301,73 @@ public class Conexion {
         }
         return bandera;
     }
+
+    // ----------------------- USUARIO -----------------------------------------
+    public int insertarUsuario(Usuario c) {
+        int bandera = 0;
+        try {
+            String query = "INSERT INTO USUARIO(ID_USUARIO, PASS_USUARIO, NOMBRE_USUARIO, APELLIDO_USUARIO)"
+                    + "VALUES('" + c.getId() + "','" + c.getPass() + "','" + c.getNombre() + "','" + c.getApellido() + "')";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public ResultSet ConsultarTodoUsuario() {
+        try {
+            String query = "SELECT * FROM USUARIO";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    public boolean ConsultarExisteUsuario(Usuario c) {
+        try {
+            String query = "SELECT * FROM USUARIO where ID_USUARIO='" + c.getId() + "'";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public int modificarUsuario(Usuario c) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE USUARIO SET"
+                    + " PASS_USUARIO = '" + c.getPass() + "',"
+                    + " NOMBRE_USUARIO = '" + c.getNombre() + "',"
+                    + " APELLIDO_USUARIO = '" + c.getApellido() + "' "
+                    + " WHERE ID_USUARIO = '" + c.getId() + "';";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public int eliminarUsuario(String id) {
+        int bandera = 0;
+        try {
+            String query = "DELETE FROM USUARIO WHERE ID_USUARIO = '" + id + "'";
+            System.out.println(query);
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+    // -------------------------------------------------------------------------
 }

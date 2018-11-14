@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Conexion;
+import modelo.Usuario;
 
 /**
  *
@@ -29,18 +31,28 @@ public class EliminarUsuario extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet EliminarUsuario</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet EliminarUsuario at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        Conexion cn = new Conexion();
+        Usuario usuario = new Usuario();
+        String id = request.getParameter("txtId");
+        usuario.setId(id);
+        boolean res = cn.ConsultarExisteUsuario(usuario);
+        System.out.println(res);
+        if (!res) {
+            String message = "No se han encontrado coincidencias con el ID del usuario. Intente nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+        } else {
+            int resultado = cn.eliminarUsuario(id);
+            if (resultado > 0) {
+                String message = "El usuario ha sido borrado con exito!";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+            } else {
+                String message = "Ha ocurrido un error. Intente nuevamente!";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+            }
+
         }
     }
 
