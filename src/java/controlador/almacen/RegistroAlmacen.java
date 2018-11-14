@@ -44,15 +44,15 @@ public class RegistroAlmacen extends HttpServlet {
 
             Conexion cn = new Conexion();
             Almacen almacen = new Almacen();
-            almacen.setId(request.getParameter("txtId"));
+            almacen.setId(request.getIntHeader("txtId"));
             almacen.setNombre(request.getParameter("txtNombre"));
             almacen.setTelefono(request.getParameter("txtTelefono"));
             almacen.setDireccion(request.getParameter("txtDireccion"));
             System.out.println(almacen.toString());
             
-            boolean res = cn.ConsultarExisteA(almacen);
+            boolean res = cn.ConsultarExisteAlmacen(almacen);
             if (!res) {
-                cn.insertarA(almacen);
+                cn.insertarAlmacen(almacen);
                 String message = "El almacen ha sido registrado exitosamente";
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);

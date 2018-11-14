@@ -46,7 +46,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>RegistroAlmacen</servlet-name>
-        <url-pattern>/registroAlmacen.do</url-pattern>
+        <url-pattern>/registro_almacen.do</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConsultarAlmacen</servlet-name>

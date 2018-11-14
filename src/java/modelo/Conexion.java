@@ -47,7 +47,7 @@ public class Conexion {
         return bandera;
     }
 
-    public int insertarA(Almacen c) {
+    public int insertarAlmacen(Almacen c) {
         int bandera = 0;
         try {
             String query = "INSERT INTO ALMACEN(ID_ALMACEN, NOMBRE_ALMACEN, TELEFONO_ALMACEN, DIRECCION_ALMACEN)"
@@ -85,7 +85,7 @@ public class Conexion {
         return false;
     }
   
-      public boolean ConsultarExisteA(Almacen c){
+      public boolean ConsultarExisteAlmacen(Almacen c){
         try {
             String query = "SELECT * FROM almacen where id_almacen='" + c.getDireccion() + "'";
             state = cnn.createStatement();
@@ -108,6 +108,26 @@ public class Conexion {
                     + " VOLUMEN_CAMION = '"+c.getVolumen()+"',"
                     + " PESO_CAMION = '"+c.getPeso()+"',"
                     + " ESTADO_CAMION = '"+c.getEstado()+"' WHERE MATRICULA_CAMION = '" +c.getPlaca()+"';";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+    
+        public int modificarAlmacen(Almacen c)
+    {
+        int bandera = 0;
+        try
+        {
+            String query = "UPDATE ALMACEN SET" 
+                    + " ID_ALMACEN = '"+c.getId()+"',"
+                    + " NOMBRE_ALMACEN = '"+c.getNombre()+"',"
+                    + " TELEFONO_ALMACEN = '"+c.getTelefono()+"',"
+                    + " DIRECCION_ALMACEN = '"+c.getDireccion()+"' WHERE ID_ALMACEN = '" +c.getId()+"';";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         }

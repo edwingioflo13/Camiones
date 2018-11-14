@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Almacen;
+import modelo.Conexion;
 
 /**
  *
@@ -20,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "ModificarAlmacen", urlPatterns = {"/modificar_almacen.do"})
 public class ModificarAlmacen extends HttpServlet {
 
-    /**
+   /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -31,18 +33,44 @@ public class ModificarAlmacen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ModificarAlmacen</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ModificarAlmacen at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+        String id = request.getParameter("txtId");
+        String nombre = request.getParameter("txtNomre");
+        String telefono = request.getParameter("txtTelefono");
+        String direccion = request.getParameter("txtDireccion");
+        
+        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
+            String message = "Existen campos vacios. Intente Nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("ModificarCamiones.jsp").forward(request, response);
+            return;
+        } else {
+            Conexion cn = new Conexion();
+            Almacen almacen = new Almacen();
+            almacen.setId(request.getIntHeader("txtId"));
+            almacen.setNombre(request.getParameter("txtNombre"));
+            almacen.setTelefono(request.getParameter("txtTelefono"));
+            almacen.setDireccion(request.getParameter("txtDireccion"));
+            System.out.println(almacen.toString());
+            boolean res = cn.ConsultarExisteAlmacen(almacen);
+            System.out.println(res);
+            if (!res) {
+                String message = "No se han encontrado coincidencias con el codigo o id del almacen. Intente nuevamente";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
+            } else {
+                int resultado = cn.modificarAlmacen(almacen);
+                if (resultado > 0) {
+                    String message = "El almacen ha sido modificado con exito!";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("ModificarAlmacen.jsp").forward(request, response);
+                } else {
+                    String message = "Ha ocurrido un error. Intente nuevamente!";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("ModificarAlmacen.jsp").forward(request, response);
+                }
+
+            }
         }
     }
 

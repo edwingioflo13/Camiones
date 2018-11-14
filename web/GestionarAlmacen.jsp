@@ -20,7 +20,7 @@
             }
             function consultar()
             {
-                window.location = '/Camiones/consultar_almacenes.do';
+                window.location = 'consultaAlmacen.jsp';
             }
             function registrar()
             {

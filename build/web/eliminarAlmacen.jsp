@@ -21,12 +21,12 @@
         </script>
     </head>
     <body>
-        <h1>Ingrese el código del alamacen que desea eliminar:</h1>
+        <h1>Ingrese el código del almacen que desea eliminar:</h1>
 
         <img src = "images/5.png" align="middle" width="200" height="200"/>
         <br><br><br>
     <center>
-        <form name="eliminar" action="elimina_almacen.do" method="POST"><table>
+        <form name="eliminar" action="eliminar_almacen.do" method="POST"><table>
                 <tr>
                     <td>Código:</td>
                     <td><input type="text" name="txtId" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>

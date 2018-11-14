@@ -43,7 +43,7 @@
                 </tr>
                 <tr>
                     <td>Direccion:</td>
-                    <td><input type="text" name="txtDIreccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtDireccion" placeholder="0.00" onkeypress="return validaNumero(event)"></td>
                 </tr>
               
             </table>

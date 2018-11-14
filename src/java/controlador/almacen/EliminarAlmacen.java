@@ -35,7 +35,7 @@ public class EliminarAlmacen extends HttpServlet {
         Conexion cn = new Conexion();
         Almacen almacen = new Almacen();
         String codigo = request.getParameter("txtId");
-        boolean res = cn.ConsultarExisteA(almacen);
+        boolean res = cn.ConsultarExisteAlmacen(almacen);
         System.out.println(res);
         if (!res) {
             String message = "No se han encontrado coincidencias con el codigo del almacen. Intente nuevamente";
