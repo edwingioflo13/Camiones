@@ -37,8 +37,8 @@ public class Conexion {
     public int insertar(Camion c) {
         int bandera = 0;
         try {
-            String query = "INSERT INTO CAMION(MATRICULA_CAMION, VOLUMEN_CAMION, PESO_CAMION, ESTADO_CAMION)"
-                    + "VALUES('" + c.getPlaca() + "'," + c.getVolumen() + "," + c.getPeso() + ",'" + c.getEstado() + "')";
+            String query = "INSERT INTO CAMION(MATRICULA_CAMION, CEDULA_CHOFER, VOLUMEN_CAMION, PESO_CAMION, ESTADO_CAMION)"
+                    + "VALUES('" + c.getPlaca() + "','" + c.getChofer().getCedula()+"'," + c.getVolumen() + "," + c.getPeso() + ",'" + c.getEstado() + "')";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -74,6 +74,17 @@ public class Conexion {
     public ResultSet ConsultarTodoAlmacen() {
         try {
             String query = "SELECT * FROM ALMACEN";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+    
+    public ResultSet ConsultarTodoChofer() {
+        try {
+            String query = "SELECT * FROM CHOFER";
             state = cnn.createStatement();
             res = state.executeQuery(query);
         } catch (SQLException ex) {

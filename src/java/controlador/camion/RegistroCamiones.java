@@ -21,6 +21,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Camion;
+import modelo.Chofer;
 import modelo.Conexion;
 
 /**
@@ -40,12 +41,10 @@ public class RegistroCamiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String codigo = request.getParameter("txtCodigo");
         String placa = request.getParameter("txtPlaca");
         String volumen = request.getParameter("txtVolumen");
         String peso = request.getParameter("txtPeso");
-        String estado = request.getParameter("txtEstado");
-        if (codigo.equals("") || placa.equals("") || volumen.equals("") || peso.equals("") || estado.equals("")) {
+        if (placa.equals("") || volumen.equals("") || peso.equals("") ) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("RegistroCamiones.jsp").forward(request, response);
@@ -58,6 +57,7 @@ public class RegistroCamiones extends HttpServlet {
             camion.setVolumen(Float.parseFloat(request.getParameter("txtVolumen")));
             camion.setPeso(Float.parseFloat(request.getParameter("txtPeso")));
             camion.setEstado(request.getParameter("txtEstado"));
+            camion.getChofer().setCedula(request.getParameter("txtChofer"));
             System.out.println(camion.toString());
             boolean res = cn.ConsultarExiste(camion);
             if (!res) {
@@ -71,6 +71,22 @@ public class RegistroCamiones extends HttpServlet {
                 request.getRequestDispatcher("RegistroCamiones.jsp").forward(request, response);
             }
         }
+    }
+
+    public ArrayList<Chofer> consultaChofer() {
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodoChofer();
+        ArrayList<Chofer> choferes= new ArrayList<Chofer>();
+        try {
+            while (res.next()) {
+                choferes.add(new Chofer(res.getString("CEDULA_CHOFER"),
+                        res.getString("NOMBRE_CHOFER"), res.getString("APELLIDO_CHOFER"), res.getString("DIRECCION_CHOFER"), res.getString("LICENCIA_CHOFER"), res.getDate("FECHANAC_CHOFER")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return choferes;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

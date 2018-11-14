@@ -14,6 +14,7 @@ public class Camion {
     private float volumen;
     private float peso;
     private String estado;
+    private Chofer chofer = new Chofer();
 
     public Camion() {
     }
@@ -24,6 +25,16 @@ public class Camion {
         this.peso = peso;
         this.estado = estado;
     }
+
+    public Camion(String placa, float volumen, float peso, String estado, Chofer chofer) {
+        this.placa = placa;
+        this.volumen = volumen;
+        this.peso = peso;
+        this.estado = estado;
+        this.chofer = chofer;
+    }
+    
+    
 
     public String getPlaca() {
         return placa;
@@ -57,9 +68,19 @@ public class Camion {
         this.estado = estado;
     }
 
+    public Chofer getChofer() {
+        return chofer;
+    }
+
+    public void setChofer(Chofer chofer) {
+        this.chofer = chofer;
+    }
+
     @Override
     public String toString() {
-        return "Camion{" + "placa=" + placa + ", volumen=" + volumen + ", peso=" + peso + ", estado=" + estado + '}';
+        return "Camion{" + "placa=" + placa + ", volumen=" + volumen + ", peso=" + peso + ", estado=" + estado + ", chofer=" + chofer + '}';
     }
+
+    
     
 }
