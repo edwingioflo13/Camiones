@@ -11,7 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Almacen;
+import modelo.Tienda;
 import modelo.Conexion;
 
 /**
@@ -44,16 +44,16 @@ public class RegistroTienda extends HttpServlet {
         } else {
 
             Conexion cn = new Conexion();
-            Almacen almacen = new Almacen();
-            almacen.setId(Integer.valueOf(request.getParameter("txtId")));
-            almacen.setNombre(request.getParameter("txtNombre"));
-            almacen.setTelefono(request.getParameter("txtTelefono"));
-            almacen.setDireccion(request.getParameter("txtDireccion"));
-            System.out.println(almacen.toString());
+            Tienda tienda = new Tienda();
+            tienda.setId(Integer.valueOf(request.getParameter("txtId")));
+            tienda.setNombre(request.getParameter("txtNombre"));
+            tienda.setTelefono(request.getParameter("txtTelefono"));
+            tienda.setDireccion(request.getParameter("txtDireccion"));
+            System.out.println(tienda.toString());
             
-            boolean res = cn.ConsultarExisteAlmacen(almacen);
+            boolean res = cn.ConsultarExisteTienda(tienda);
             if (!res) {
-                cn.insertarAlmacen(almacen);
+                cn.insertarTienda(tienda);
                 String message = "La tienda ha sido registrado exitosamente";
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("registroTienda.jsp").forward(request, response);

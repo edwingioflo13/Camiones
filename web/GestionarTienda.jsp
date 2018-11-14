@@ -20,19 +20,19 @@
             }
             function consultar()
             {
-                window.location = 'consultarTienda.jsp';
+                window.location = 'consultaTienda.jsp';
             }
             function registrar()
             {
-                window.location = 'registrarTienda.jsp';
+                window.location = 'registroTienda.jsp';
             }
             function eliminar()
             {
-                window.location = 'eliminarTienda.jsp';
+                window.location = 'eliminaTienda.jsp';
             }
             function modificar()
             {
-                window.location = 'modificarAlmacen.jsp';
+                window.location = 'modificaTienda.jsp';
             }
         </script>
     </head>

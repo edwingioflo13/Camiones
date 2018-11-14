@@ -38,7 +38,7 @@ public class ConsultarTienda extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Conexion cn = new Conexion();
-        ResultSet res = cn.ConsultarTodoAlmacen();
+        ResultSet res = cn.ConsultarTodoTienda();
         ArrayList<Tienda> tienda = new ArrayList<Tienda>();
         if (res == null) {
             String error = "No existen datos";
