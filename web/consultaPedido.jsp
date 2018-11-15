@@ -34,28 +34,34 @@
     <center>
         <table border width="90%" style="font-size:18px; text-align: center">
             <tr>
-                <td><strong>ID_PEDIDO</strong></td>
-                <td><strong>ID_ALMACEN</strong></td>
-                <td><strong>ID_TIENDA</strong></td>
-                <td><strong>ID_VIAJE</strong></td>
-                <td><strong>PESO_PEDIDO</strong></td>
-                <td><strong>VOLUMEN_PEDIDO</strong></td>
-                <td><strong>FECHAENVIO_PEDIDO</strong></td>
-                <td><strong>FECHAENTREGA_PEDIDO</strong></td>
+                <td><strong>ID</strong></td>
+                <td><strong>ALMACEN</strong></td>
+                <td><strong>TIENDA</strong></td>
+                <td><strong>ID VIAJE</strong></td>
+                <td><strong>PESO</strong></td>
+                <td><strong>VOLUMEN</strong></td>
+                <td><strong>FECHAENVIO</strong></td>
+                <td><strong>FECHAENTREGA</strong></td>
+                <td><strong>ENVIADO</strong></td>
             </tr>
 
 
-             <%
+            <%
                 for (int i = 0; i < pedido.size(); i++) {
+                    String envio = "NO";
+                    if(pedido.get(i).getEntrega() != null){
+                        envio = "SI";
+                    }
                     out.println("<tr>"
                             + "<td>" + pedido.get(i).getId() + "</td>"
-                            + "<td>" + pedido.get(i).getAlmacen() + "</td>"
-                            + "<td>" + pedido.get(i).getTienda() + "</td>"
-                            + "<td>" + pedido.get(i).getViaje() + "</td>"
+                            + "<td>" + pedido.get(i).getAlmacen().getId() + "-" + pedido.get(i).getAlmacen().getNombre() + "</td>"
+                            + "<td>" + pedido.get(i).getTienda().getId() + "-" + pedido.get(i).getTienda().getNombre() + "</td>"
+                            + "<td>" + pedido.get(i).getViaje().getId() + "</td>"
                             + "<td>" + pedido.get(i).getPeso() + "</td>"
                             + "<td>" + pedido.get(i).getVolumen() + "</td>"
                             + "<td>" + pedido.get(i).getEnvio() + "</td>"
-                            + "<td>" + pedido.get(i).getEntrega() + "</td></tr>");
+                            + "<td>" + pedido.get(i).getEntrega() + "</td>"
+                            + "<td>" + envio + "</td></tr>");
                 }
             %>
         </table>

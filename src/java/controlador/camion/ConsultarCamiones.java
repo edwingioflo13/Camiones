@@ -5,18 +5,36 @@
  */
 package controlador.camion;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Camion;
 import modelo.Conexion;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 public class ConsultarCamiones extends HttpServlet {
 
@@ -52,7 +70,85 @@ public class ConsultarCamiones extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public void toPDF(String reportName, Map<String, Object> parameters) throws JRException {
+        try {
+            final String reportSource = getClass().getClassLoader().getResource(reportName).getPath();
+
+            final JasperDesign jd = JRXmlLoader.load(reportSource);
+
+            final JasperReport report = JasperCompileManager.compileReport(jd);
+
+            final JasperPrint print = JasperFillManager.fillReport(report, parameters, new JREmptyDataSource());
+
+            final String reportTarget = reportSource.substring(0, reportSource.lastIndexOf('/')).concat(reportName).concat(".pdf");
+
+            JasperExportManager.exportReportToPdfFile(print, reportTarget);
+
+        } catch (JRException ex) {
+            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
+        }
+    }
+
+    public void generarReporte() throws FileNotFoundException {
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodo();
+        ArrayList<Camion> camiones = new ArrayList<Camion>();
+        try {
+            while (res.next()) {
+                Camion cam = new Camion(res.getString("MATRICULA_CAMION"),
+                        res.getFloat("VOLUMEN_CAMION"), res.getFloat("PESO_CAMION"), res.getString("ESTADO_CAMION"), cn.ConsultarChofer(res.getString("CEDULA_CHOFER")));
+                cam.setNombreChofer(cam.getChofer().getNombre()+" "+cam.getChofer().getApellido());
+                System.out.println(cam.toString());
+                camiones.add(cam);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        try {
+            /* User home directory location */
+            String userHomeDirectory = System.getProperty("user.home");
+            /* Output file location */
+            String outputFile = userHomeDirectory + File.separatorChar + "Despacho2.pdf";
+
+
+            /* Convert List to JRBeanCollectionDataSource */
+            JRBeanCollectionDataSource itemsJRBean = new JRBeanCollectionDataSource(camiones, false);
+            //System.out.println("entroo" + lcproProcomFacadeRemote.findAll().get(0).getProMision());
+            /* Map to hold Jasper report Parameters */
+            Map<String, Object> parameters = new HashMap<String, Object>();
+            parameters.put("ItemDataSource", itemsJRBean);
+/*
+            FacesContext context = FacesContext.getCurrentInstance();
+            ServletContext servletContext = (ServletContext) context.getExternalContext().getContext();
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+*/
+            // busca el reporte y trae su path absoluto
+            String pathReporte = "D:\\Proyectos\\GitHub\\Camiones\\web\\camion.jasper";
+            System.out.println(pathReporte);
+
+            //reportesGenerales.setVerDialogPDF(true);
+
+            /* Using compiled version(.jasper) of Jasper report to generate PDF */
+            //JasperPrint jasperPrint = JasperFillManager.fillReport("C://PROYECTO_FINAL_F/logistico/trunk/transporte/src/main/webapp/reportes/despachoCombustible.jasper", parameters, new JREmptyDataSource());
+            JasperPrint jasperPrint = JasperFillManager.fillReport(pathReporte, parameters, new JREmptyDataSource());
+
+            /* outputStream to create PDF */
+            OutputStream outputStream = new FileOutputStream(new File(outputFile));
+            /* Write content to PDF file */
+            JasperExportManager.exportReportToPdfStream(jasperPrint, outputStream);
+
+            System.out.println("File Generated");
+            /* ReportesGeneralesBean reportes = new ReportesGeneralesBean();
+            reportes.setVerDialogPDF(true);*/
+        } catch (JRException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

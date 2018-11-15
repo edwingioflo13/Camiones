@@ -130,7 +130,7 @@
                             <a href="#">Viajes</a>
                             <ul>
                                 <li>
-                                    <a href="/Camiones/recepcionPedidos.jsp">Generar Viaje</a>
+                                    <a href="/Camiones/planificadorViajes.jsp">Generar Viaje</a>
                                 </li>
                                 <li>
                                     <a href="/Camiones/consultar_pedidos.do">Ver Viaje</a>

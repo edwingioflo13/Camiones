@@ -15,6 +15,7 @@ public class Camion {
     private float peso;
     private String estado;
     private Chofer chofer = new Chofer();
+    private String nombreChofer;
 
     public Camion() {
     }
@@ -78,8 +79,20 @@ public class Camion {
 
     @Override
     public String toString() {
-        return "Camion{" + "placa=" + placa + ", volumen=" + volumen + ", peso=" + peso + ", estado=" + estado + ", chofer=" + chofer + '}';
+        return "Camion{" + "placa=" + placa + ", volumen=" + volumen + ", peso=" + peso + ", estado=" + estado + ", chofer=" + chofer + ", nombreChofer=" + nombreChofer + '}';
     }
+
+    
+
+    public String getNombreChofer() {
+        return nombreChofer;
+    }
+
+    public void setNombreChofer(String nombreChofer) {
+        this.nombreChofer = nombreChofer;
+    }
+    
+    
 
     
     

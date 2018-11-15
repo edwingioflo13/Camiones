@@ -88,6 +88,14 @@
         <servlet-name>ConsultaPedidos</servlet-name>
         <servlet-class>controlador.pedido.ConsultaPedidos</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DespachoPedido</servlet-name>
+        <servlet-class>controlador.pedido.DespachoPedido</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlanificarViaje</servlet-name>
+        <servlet-class>controlador.viaje.PlanificarViaje</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -174,7 +182,15 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ConsultaPedidos</servlet-name>
-        <url-pattern>/consulta_pedidos.do</url-pattern>
+        <url-pattern>/consultar_pedidos.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DespachoPedido</servlet-name>
+        <url-pattern>/despacho_pedido.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlanificarViaje</servlet-name>
+        <url-pattern>/planificar_viaje.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

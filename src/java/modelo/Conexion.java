@@ -15,6 +15,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -145,6 +146,21 @@ public class Conexion {
         return false;
     }
 
+    public Camion ConsultarCamion(String placa) {
+        try {
+            String query = "SELECT * FROM camion where MATRICULA_CAMION='" + placa + "'";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return new Camion(res.getString("MATRICULA_CAMION"),
+                        res.getFloat("VOLUMEN_CAMION"), res.getFloat("PESO_CAMION"), res.getString("ESTADO_CAMION"), ConsultarChofer(res.getString("CEDULA_CHOFER")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     public boolean ConsultarExisteAlmacen(Almacen c) {
         try {
             String query = "SELECT * FROM almacen where id_almacen='" + c.getId() + "'";
@@ -157,6 +173,21 @@ public class Conexion {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+
+    public Almacen ConsultarAlmacen(int c) {
+        try {
+            String query = "SELECT * FROM almacen where id_almacen=" + c;
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return new Almacen(res.getInt("ID_ALMACEN"),
+                            res.getString("NOMBRE_ALMACEN"), res.getString("TELEFONO_ALMACEN"), res.getString("DIRECCION_ALMACEN"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public boolean ConsultarExisteChofer(Chofer c) {
@@ -201,6 +232,21 @@ public class Conexion {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return false;
+    }
+    
+    public Tienda ConsultarTienda(int c) {
+        try {
+            String query = "SELECT * FROM tienda where id_tienda=" + c;
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return new Tienda(res.getInt("Id_TIENDA"),res.getString("NOMBRE_TIENDA"),res.getString("TELEFONO_TIENDA"),
+                            res.getString("DIRECCION_TIENDA"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     public int modificar(Camion c) {
@@ -394,7 +440,76 @@ public class Conexion {
         int bandera = 0;
         try {
             String query = "INSERT INTO PEDIDO(ID_ALMACEN, ID_TIENDA, VOLUMEN_PEDIDO, PESO_PEDIDO, FECHAENVIO_PEDIDO)"
-                    + "VALUES(" + c.getAlmacen().getId() + "," + c.getTienda().getId() + "," + c.getVolumen() + "," + c.getPeso() + ",'" + new java.sql.Date(c.getEntrega().getTime())+ "')";
+                    + "VALUES(" + c.getAlmacen().getId() + "," + c.getTienda().getId() + "," + c.getVolumen() + "," + c.getPeso() + ",'" + new java.sql.Date(c.getEntrega().getTime()) + "')";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public int insertarViaje(Viaje c) {
+        int bandera = 0;
+        try {
+            String query = "INSERT INTO VIAJE(ID_VIAJE, MATRICULA_CAMION, RUTA_VIAJE)"
+                    + "VALUES(" + c.getId() + ",'" + c.getCamion().getPlaca() + "','" + c.getRuta() + "')";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public boolean ConsultarExisteViaje(int c) {
+        try {
+            String query = "SELECT * FROM VIAJE where ID_VIAJE=" + c;
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public boolean ConsultarEnvioPedido(int id) {
+        try {
+            String query = "SELECT * FROM PEDIDO where ID_PEDIDO=" + id + " and ID_VIAJE IS NOT NULL";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return false;
+    }
+
+    public int despacharPedido(int id) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE PEDIDO SET"
+                    + " FECHAENTREGA_PEDIDO = '" + new java.sql.Date(new Date().getTime()) + "'"
+                    + " WHERE ID_PEDIDO = " + id + ";";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public int enviarPedido(int id, int viaje) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE PEDIDO SET"
+                    + " ID_VIAJE = " + viaje
+                    + " WHERE ID_PEDIDO = " + id + ";";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -406,6 +521,17 @@ public class Conexion {
     public ResultSet ConsultarTodoPedido() {
         try {
             String query = "SELECT * FROM PEDIDO";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    public ResultSet ConsultarFiltroPedido(int almacen, int tienda) {
+        try {
+            String query = "SELECT * FROM PEDIDO WHERE ID_TIENDA=" + tienda + " AND ID_ALMACEN=" + almacen + " AND ID_VIAJE IS NULL";
             state = cnn.createStatement();
             res = state.executeQuery(query);
         } catch (SQLException ex) {

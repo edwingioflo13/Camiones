@@ -88,6 +88,22 @@ public class RegistroCamiones extends HttpServlet {
 
         return choferes;
     }
+    
+    public ArrayList<Camion> consultaCamiones() {
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodo();
+        ArrayList<Camion> camiones= new ArrayList<Camion>();
+        try {
+            while (res.next()) {
+                camiones.add(new Camion(res.getString("MATRICULA_CAMION"),
+                            res.getFloat("VOLUMEN_CAMION"), res.getFloat("PESO_CAMION"), res.getString("ESTADO_CAMION"), cn.ConsultarChofer(res.getString("CEDULA_CHOFER"))));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return camiones;
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

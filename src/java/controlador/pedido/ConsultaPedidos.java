@@ -53,10 +53,9 @@ public class ConsultaPedidos extends HttpServlet {
                     Almacen almacen = new Almacen();
                     Tienda tienda = new Tienda();
                     Viaje viaje = new Viaje();
-                    almacen.setId(res.getInt("ID_ALMACEN"));
-                    tienda.setId(res.getInt("ID_TIENDA"));
-                    //viaje.setId(res.getString("ID_VIAJE"));
-                    
+                    almacen = cn.ConsultarAlmacen(res.getInt("ID_ALMACEN"));
+                    tienda = cn.ConsultarTienda(res.getInt("ID_TIENDA"));
+                    viaje.setId(res.getInt("ID_VIAJE"));
                     pedido.add(new Pedido(res.getInt("ID_PEDIDO"),
                             almacen, tienda, viaje, 
                             res.getFloat("PESO_PEDIDO"), res.getFloat("VOLUMEN_PEDIDO"), res.getDate("FECHAENVIO_PEDIDO"), res.getDate("FECHAENTREGA_PEDIDO")));
