@@ -52,8 +52,6 @@
                             + "<td>" + camiones.get(i).getPeso() + "</td>"
                             + "<td>" + camiones.get(i).getEstado() + "</td></tr>");
                 }
-                ConsultarCamiones servicio = new ConsultarCamiones();
-                servicio.generarReporte();
             %>
         </table>
     </center>

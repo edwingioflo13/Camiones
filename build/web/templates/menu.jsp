@@ -27,7 +27,7 @@
             <!--Note: declare the Menu style in the data-menu-style="horizontal" (options: horizontal, vertical, accordion) -->
             <ul id="respMenu" class="ace-responsive-menu" data-menu-style="horizontal">
                 <li>
-                    <a href="javascript:;">
+                    <a href="/Camiones/inicio.jsp">
                         <i class="fa fa-home" aria-hidden="true"></i>
                         <span class="title">CAMIONES MONSTER</span>
                     </a>
@@ -125,19 +125,16 @@
                                 </li>
                             </ul>
                         </li>
-                        
+
                         <li>
                             <a href="#">Viajes</a>
                             <ul>
                                 <li>
                                     <a href="/Camiones/planificadorViajes.jsp">Generar Viaje</a>
                                 </li>
-                                <li>
-                                    <a href="/Camiones/consultar_pedidos.do">Ver Viaje</a>
-                                </li>
                             </ul>
                         </li>
-                        
+
                     </ul>
                 </li>
 
@@ -184,6 +181,23 @@
                         </li>
                         <li>
                             <a href="/Camiones/eliminarUsuario.jsp">Eliminar</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="javascript:;">
+                        <i class="fa-cube" aria-hidden="true"></i>
+                        <span class="title">Reportes</span>
+
+                    </a>
+                    <!-- Level Two-->
+                    <ul>
+                        <li>
+                            <a href="/Camiones/reporteCamion.jsp">Reporte Camiones</a>
+                        </li>
+                        <li>
+                            <a href="/Camiones/reporteViaje.jsp">Reporte Viajes</a>
                         </li>
                     </ul>
                 </li>

@@ -65,12 +65,20 @@ public class PlanificarViaje extends HttpServlet {
             Camion camion = new Camion();
             camion = cn.ConsultarCamion(camion1);
             viaje.setCamion(camion);
-            cn.insertarViaje(viaje);
             float peso = camion.getPeso();
             float volumen = camion.getVolumen();
+            viaje.setPlacaCamion(camion.getPlaca());
+
+            viaje.setNombreTienda(cn.ConsultarTienda(Integer.valueOf(tienda1)).getNombre());
+            viaje.setNombreAlmacen(cn.ConsultarAlmacen(Integer.valueOf(almacen1)).getNombre());
+            cn.insertarViaje(viaje);
+            float peso1 = 0;
+            float volumen1 = 0;
             int contador = 0;
             for (int i = 0; i < pedidos.size(); i++) {
                 if (pedidos.get(i).getPeso() < peso && pedidos.get(i).getVolumen() < volumen) {
+                    peso1 = peso1 + pedidos.get(i).getPeso();
+                    volumen1 = volumen1 + pedidos.get(i).getVolumen();
                     contador++;
                     peso = peso - pedidos.get(i).getPeso();
                     volumen = volumen - pedidos.get(i).getVolumen();
@@ -82,6 +90,9 @@ public class PlanificarViaje extends HttpServlet {
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("planificadorViajes.jsp").forward(request, response);
             }
+            viaje.setPeso(peso1);
+            viaje.setVolumen(volumen1);
+            cn.modificarViaje(viaje);
             String message = "El viaje se ha planificado exitosamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("planificadorViajes.jsp").forward(request, response);

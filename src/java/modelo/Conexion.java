@@ -182,7 +182,7 @@ public class Conexion {
             res = state.executeQuery(query);
             while (res.next()) {
                 return new Almacen(res.getInt("ID_ALMACEN"),
-                            res.getString("NOMBRE_ALMACEN"), res.getString("TELEFONO_ALMACEN"), res.getString("DIRECCION_ALMACEN"));
+                        res.getString("NOMBRE_ALMACEN"), res.getString("TELEFONO_ALMACEN"), res.getString("DIRECCION_ALMACEN"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -233,15 +233,15 @@ public class Conexion {
         }
         return false;
     }
-    
+
     public Tienda ConsultarTienda(int c) {
         try {
             String query = "SELECT * FROM tienda where id_tienda=" + c;
             state = cnn.createStatement();
             res = state.executeQuery(query);
             while (res.next()) {
-                return new Tienda(res.getInt("Id_TIENDA"),res.getString("NOMBRE_TIENDA"),res.getString("TELEFONO_TIENDA"),
-                            res.getString("DIRECCION_TIENDA"));
+                return new Tienda(res.getInt("Id_TIENDA"), res.getString("NOMBRE_TIENDA"), res.getString("TELEFONO_TIENDA"),
+                        res.getString("DIRECCION_TIENDA"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
@@ -448,12 +448,28 @@ public class Conexion {
         }
         return bandera;
     }
+    
+    public int modificarViaje(Viaje c) {
+        int bandera = 0;
+        try {
+            String query = "UPDATE VIAJE SET"
+                    + " PESO_VIAJE = " + c.getPeso() + ","
+                    + " VOLUMEN_VIAJE = " + c.getVolumen() + " "
+                    + " WHERE ID_VIAJE = " + c.getId() + ";";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
 
     public int insertarViaje(Viaje c) {
         int bandera = 0;
         try {
-            String query = "INSERT INTO VIAJE(ID_VIAJE, MATRICULA_CAMION, RUTA_VIAJE)"
-                    + "VALUES(" + c.getId() + ",'" + c.getCamion().getPlaca() + "','" + c.getRuta() + "')";
+            String query = "INSERT INTO VIAJE(ID_VIAJE, MATRICULA_CAMION, RUTA_VIAJE, ALMACEN_VIAJE, TIENDA_VIAJE, PLACA_VIAJE, PESO_VIAJE, VOLUMEN_VIAJE)"
+                    + "VALUES(" + c.getId() + ",'" + c.getCamion().getPlaca() + "','" + c.getRuta() +"','" + c.getNombreAlmacen() + "','"
+                    + c.getNombreTienda() + "','"+ c.getCamion().getPlaca() + "',"+ c.getPeso() + ","+c.getVolumen() + ")";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
         } catch (SQLException ex) {
@@ -532,6 +548,17 @@ public class Conexion {
     public ResultSet ConsultarFiltroPedido(int almacen, int tienda) {
         try {
             String query = "SELECT * FROM PEDIDO WHERE ID_TIENDA=" + tienda + " AND ID_ALMACEN=" + almacen + " AND ID_VIAJE IS NULL";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    public ResultSet ConsultarFiltroViaje(int almacen, int tienda) {
+        try {
+            String query = "SELECT * FROM VIAJE WHERE VIAJE.ID_VIAJE= (SELECT VIAJE.ID_VIAJE FROM PEDIDO WHERE pedido.ID_ALMACEN="+almacen +" and pedido.ID_TIENDA="+ tienda+" GROUP BY VIAJE.ID_VIAJE)";
             state = cnn.createStatement();
             res = state.executeQuery(query);
         } catch (SQLException ex) {

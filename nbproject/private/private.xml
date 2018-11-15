@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Proyectos/GitHub/Camiones/src/java/controlador/viaje/PlanificarViaje.java</file>
             <file>file:/D:/Proyectos/GitHub/Camiones/src/java/controlador/camion/ConsultarCamiones.java</file>
             <file>file:/D:/Proyectos/GitHub/Camiones/web/consultaCamiones.jsp</file>
+            <file>file:/D:/Proyectos/GitHub/Camiones/web/WEB-INF/web.xml</file>
+            <file>file:/D:/Proyectos/GitHub/Camiones/src/java/modelo/Conexion.java</file>
             <file>file:/D:/Proyectos/GitHub/Camiones/src/java/modelo/Camion.java</file>
         </group>
     </open-files>

@@ -96,6 +96,14 @@
         <servlet-name>PlanificarViaje</servlet-name>
         <servlet-class>controlador.viaje.PlanificarViaje</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReporteViaje</servlet-name>
+        <servlet-class>controlador.viaje.ReporteViaje</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReporteCamion</servlet-name>
+        <servlet-class>controlador.camion.ReporteCamion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -191,6 +199,14 @@
     <servlet-mapping>
         <servlet-name>PlanificarViaje</servlet-name>
         <url-pattern>/planificar_viaje.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteViaje</servlet-name>
+        <url-pattern>/reporte_viaje.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReporteCamion</servlet-name>
+        <url-pattern>/reporte_camion.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -10,9 +10,16 @@ package modelo;
  * @author t4nk
  */
 public class Viaje {
+
     private int id;
-    private Camion camion=new Camion();
+    private Camion camion = new Camion();
     private String ruta;
+    private float peso;
+    private float volumen;
+    private String nombreTienda;
+    private String nombreAlmacen;
+    private String placaCamion;
+    
 
     public Viaje() {
     }
@@ -22,7 +29,15 @@ public class Viaje {
         this.ruta = ruta;
     }
 
-    
+    public Viaje(int id, String ruta, float peso, float volumen, String nombreTienda, String nombreAlmacen, String placaCamion) {
+        this.id = id;
+        this.ruta = ruta;
+        this.peso = peso;
+        this.volumen = volumen;
+        this.nombreTienda = nombreTienda;
+        this.nombreAlmacen = nombreAlmacen;
+        this.placaCamion = placaCamion;
+    }
 
     public int getId() {
         return id;
@@ -52,7 +67,47 @@ public class Viaje {
     public String toString() {
         return "Viaje{" + "id=" + id + ", camion=" + camion + ", ruta=" + ruta + '}';
     }
+
+    public float getPeso() {
+        return peso;
+    }
+
+    public void setPeso(float peso) {
+        this.peso = peso;
+    }
+
+    public float getVolumen() {
+        return volumen;
+    }
+
+    public void setVolumen(float volumen) {
+        this.volumen = volumen;
+    }
+
+    public String getNombreTienda() {
+        return nombreTienda;
+    }
+
+    public void setNombreTienda(String nombreTienda) {
+        this.nombreTienda = nombreTienda;
+    }
+
+    public String getNombreAlmacen() {
+        return nombreAlmacen;
+    }
+
+    public void setNombreAlmacen(String nombreAlmacen) {
+        this.nombreAlmacen = nombreAlmacen;
+    }
+
+    public String getPlacaCamion() {
+        return placaCamion;
+    }
+
+    public void setPlacaCamion(String placaCamion) {
+        this.placaCamion = placaCamion;
+    }
     
     
-    
+
 }
