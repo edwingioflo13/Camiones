@@ -84,6 +84,10 @@
         <servlet-name>RegistroPedido</servlet-name>
         <servlet-class>controlador.pedido.RegistroPedido</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ConsultaPedidos</servlet-name>
+        <servlet-class>controlador.pedido.ConsultaPedidos</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>RegistroPedido</servlet-name>
         <url-pattern>/registro_pedido.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ConsultaPedidos</servlet-name>
+        <url-pattern>/consulta_pedidos.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
