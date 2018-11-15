@@ -30,7 +30,7 @@
         <form name="eliminar" action="eliminar_almacen.do" method="POST"><table>
                 <tr>
                     <td>Id</td>
-                    <td><input type="text" name="txtId" placeholder="00123" onkeypress="return Numeros(event)"></td>
+                    <td><input type="text" name="txtId" placeholder="00123" onkeypress="return validaNumero(event)"></td>
                 </tr>
             </table>
             <br>

@@ -17,8 +17,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import modelo.Almacen;
 import modelo.Pedido;
 import modelo.Conexion;
+import modelo.Tienda;
+import modelo.Viaje;
 
 /**
  *
@@ -47,8 +50,15 @@ public class ConsultaPedidos extends HttpServlet {
         } else {
             try {
                 while (res.next()) {
+                    Almacen almacen = new Almacen();
+                    Tienda tienda = new Tienda();
+                    Viaje viaje = new Viaje();
+                    almacen.setId(res.getInt("ID_ALMACEN"));
+                    tienda.setId(res.getInt("ID_TIENDA"));
+                    //viaje.setId(res.getString("ID_VIAJE"));
+                    
                     pedido.add(new Pedido(res.getInt("ID_PEDIDO"),
-                            res.getInt("ID_ALMACEN"), res.getInt("ID_TIENDA"), res.getString("ID_VIAJE"), 
+                            almacen, tienda, viaje, 
                             res.getFloat("PESO_PEDIDO"), res.getFloat("VOLUMEN_PEDIDO"), res.getDate("FECHAENVIO_PEDIDO"), res.getDate("FECHAENTREGA_PEDIDO")));
                 }
                 request.getSession().setAttribute("pedido", pedido);

@@ -21,7 +21,7 @@ import modelo.Tienda;
  */
 public class EliminarAlmacen extends HttpServlet {
 
-     /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -36,10 +36,15 @@ public class EliminarAlmacen extends HttpServlet {
         Conexion cn = new Conexion();
         Almacen almacen = new Almacen();
         String id = request.getParameter("txtId");
+        if (id.equals("")) {
+            String message = "El campo esta vacio. Intente nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
+            return;
+        }
         almacen.setId(Integer.parseInt(id));
         boolean res = cn.ConsultarExisteAlmacen(almacen);
         System.out.println(res);
-          
         if (!res) {
             String message = "No se han encontrado coincidencias con el codigo del almacen. Intente nuevamente";
             request.setAttribute("message", message);

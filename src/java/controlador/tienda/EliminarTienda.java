@@ -35,6 +35,12 @@ public class EliminarTienda extends HttpServlet {
       Conexion cn = new Conexion();
         Tienda tienda = new Tienda();
         String id = request.getParameter("txtId");
+         if (id.equals("")) {
+            String message = "El campo esta vacio. Intente nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("eliminarTienda.jsp").forward(request, response);
+            return;
+        }
         tienda.setId(Integer.parseInt(id));
         boolean res = cn.ConsultarExisteTienda(tienda);
         System.out.println(res);
