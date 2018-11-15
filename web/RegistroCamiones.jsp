@@ -73,6 +73,7 @@
                         </select></td>
                 </tr>
             </table>
+            <br>
             <p><strong>${message}</strong></p>
             <br>
             <input type="submit" value="Registrar...">

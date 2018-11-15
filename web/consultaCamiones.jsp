@@ -27,13 +27,15 @@
         </script>
     </head>
     <body>
+        <br><br><br><br>
         <h1>Mostrar todos los camiones:</h1>
-        <img src = "images/3.png" align="middle" width="300" height="200"/>
+        <img src = "images/2.png" align="middle" width="300" height="200"/>
         <br><br>
     <center>
         <table border width="90%" style="font-size:18px; text-align: center">
             <tr>
                 <td><strong>PLACA</strong></td>
+                <td><strong>CHOFER</strong></td>
                 <td><strong>VOLUMEN</strong></td>
                 <td><strong>PESO</strong></td>
                 <td><strong>ESTADO</strong></td>
@@ -44,6 +46,7 @@
                 for (int i = 0; i < camiones.size(); i++) {
                     out.println("<tr>"
                             + "<td>" + camiones.get(i).getPlaca() + "</td>"
+                            + "<td>" + camiones.get(i).getChofer().getNombre()+" "+ camiones.get(i).getChofer().getApellido()+ "</td>"
                             + "<td>" + camiones.get(i).getVolumen() + "</td>"
                             + "<td>" + camiones.get(i).getPeso() + "</td>"
                             + "<td>" + camiones.get(i).getEstado() + "</td></tr>");
@@ -51,7 +54,7 @@
             %>
         </table>
     </center>
-    <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
+
+
 </body>
 </html>

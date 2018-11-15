@@ -172,6 +172,22 @@ public class Conexion {
         }
         return false;
     }
+    
+    public Chofer ConsultarChofer(String cedula) {
+        try {
+            String query = "SELECT * FROM CHOFER where CEDULA_CHOFER='" + cedula + "'";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+            while (res.next()) {
+                Chofer chofer = new Chofer(res.getString("CEDULA_CHOFER"),res.getString("NOMBRE_CHOFER"),res.getString("APELLIDO_CHOFER"),
+                            res.getString("DIRECCION_CHOFER"), res.getString("LICENCIA_CHOFER"), res.getFloat("SUELDO_CHOFER"));
+                return chofer;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public boolean ConsultarExisteTienda(Tienda c) {
         try {
@@ -193,6 +209,7 @@ public class Conexion {
             String query = "UPDATE CAMION SET"
                     + " VOLUMEN_CAMION = '" + c.getVolumen() + "',"
                     + " PESO_CAMION = '" + c.getPeso() + "',"
+                    + " CEDULA_CHOFER = '" + c.getChofer().getCedula() + "',"
                     + " ESTADO_CAMION = '" + c.getEstado() + "' WHERE MATRICULA_CAMION = '" + c.getPlaca() + "';";
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
@@ -254,7 +271,7 @@ public class Conexion {
     public int eliminar(String cod) {
         int bandera = 0;
         try {
-            String query = "DELETE FROM camion WHERE CODIGO_CAMION = '" + cod + "'";
+            String query = "DELETE FROM camion WHERE MATRICULA_CAMION = '" + cod + "'";
             System.out.println(query);
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);

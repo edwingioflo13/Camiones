@@ -27,12 +27,11 @@ public class ModificaCamiones extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String codigo = request.getParameter("txtCodigo");
         String placa = request.getParameter("txtPlaca");
         String volumen = request.getParameter("txtVolumen");
         String peso = request.getParameter("txtPeso");
         String estado = request.getParameter("txtEstado");
-        if (codigo.equals("") || placa.equals("") || volumen.equals("") || peso.equals("") || estado.equals("")) {
+        if (placa.equals("") || volumen.equals("") || peso.equals("") || estado.equals("")) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("ModificarCamiones.jsp").forward(request, response);
@@ -44,6 +43,7 @@ public class ModificaCamiones extends HttpServlet {
             camion.setVolumen(Float.parseFloat(request.getParameter("txtVolumen")));
             camion.setPeso(Float.parseFloat(request.getParameter("txtPeso")));
             camion.setEstado(request.getParameter("txtEstado"));
+            camion.getChofer().setCedula(request.getParameter("txtChofer"));
             System.out.println(camion.toString());
             boolean res = cn.ConsultarExiste(camion);
             System.out.println(res);

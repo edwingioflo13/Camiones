@@ -22,9 +22,10 @@
         </script>
     </head>
     <body>
+        <br><br><br><br>
         <h1>Ingrese el código del camión que desea eliminar:</h1>
 
-        <img src = "images/5.png" align="middle" width="200" height="200"/>
+        <img src = "images/2.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
         <form name="eliminar" action="elimina_camiones.do" method="POST"><table>
@@ -33,6 +34,7 @@
                     <td><input type="text" name="txtPlaca" placeholder="PYI0889" onkeypress="return validaLetrasyNumeros(event)"></td>
                 </tr>
             </table>
+            <br>
             <p><strong>${message}</strong>
             </p><br>
             <input type="submit" value="Eliminar" />
@@ -40,8 +42,6 @@
     </center>
     <br><br>
     
-    <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
 </body>
 </html>
 

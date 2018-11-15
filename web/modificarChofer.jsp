@@ -23,8 +23,8 @@
     </head>
     <body>
         <br><br><br><br>
-        <h1>Ingrese los nuevos datos del usuario que desea modificar:</h1>
-        <img src = "images/7.png" align="middle" width="200" height="200"/>
+        <h1>Ingrese los nuevos datos del chofer que desea modificar:</h1>
+        <img src = "images/7.png" align="middle" width="300" height="300"/>
         <br><br><br>
     <center>
         <form name="modificar" action="modificar_chofer.do" method="POST">

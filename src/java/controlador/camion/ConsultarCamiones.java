@@ -42,7 +42,7 @@ public class ConsultarCamiones extends HttpServlet {
             try {
                 while (res.next()) {
                     camiones.add(new Camion(res.getString("MATRICULA_CAMION"),
-                            res.getFloat("VOLUMEN_CAMION"), res.getFloat("PESO_CAMION"), res.getString("ESTADO_CAMION")));
+                            res.getFloat("VOLUMEN_CAMION"), res.getFloat("PESO_CAMION"), res.getString("ESTADO_CAMION"), cn.ConsultarChofer(res.getString("CEDULA_CHOFER"))));
                 }
                 request.getSession().setAttribute("camiones", camiones);
                 request.getRequestDispatcher("consultaCamiones.jsp").forward(request, response);

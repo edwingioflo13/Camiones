@@ -24,7 +24,7 @@
     <body>
         <br><br><br><br>
         <h1>Ingrese la cedula del chofer que desea eliminar:</h1>
-        <img src = "images/5.png" align="middle" width="200" height="200"/>
+        <img src = "images/7.png" align="middle" width="300" height="300"/>
         <br><br><br>
     <center>
         <form name="eliminar" action="eliminar_chofer.do" method="POST"><table>

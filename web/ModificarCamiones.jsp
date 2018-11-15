@@ -6,6 +6,10 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ include file="/templates/menu.jsp" %>
+<%@page import="controlador.camion.RegistroCamiones"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.Camion"%>
+<%@page import="modelo.Chofer"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,19 +26,30 @@
         </script>
     </head>
     <body>
+        <br><br><br><br>
         <h1>Ingrese los nuevos datos del camión que desea modificar:</h1>
-        <img src = "images/4.png" align="middle" width="200" height="200"/>
+        <img src = "images/2.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
         <form name="modificar" action="modifica_camiones.do" method="POST">
             <table>
                 <tr>
-                    <td>Código:</td>
-                    <td><input type="text" name="txtCodigo" placeholder="C001" onkeypress="return validaLetrasyNumeros(event)"></td>
-                </tr>
-                <tr>
                     <td>Placa:</td>
                     <td><input type="text" name="txtPlaca" placeholder="PYI0899" onkeypress="return validaLetrasyNumeros(event)"></td>
+                </tr>
+                <tr>
+                    <td>Chofer:</td>
+                    <td><select name="txtChofer" width="100%">
+                            <%
+                                RegistroCamiones servicio = new RegistroCamiones();
+                                ArrayList<Chofer> choferes = servicio.consultaChofer();
+                                //ArrayList<Camion> camiones = (ArrayList<Camion>) request.getSession().getAttribute("camiones");
+                                for (int i = 0; i < choferes.size(); i++) {
+                                    out.println("<option value='" + choferes.get(i).getCedula() + "'>" + choferes.get(i).getNombre() + " " + choferes.get(i).getApellido() + "</option>");
+                                }
+
+                            %>   
+                        </select></td>
                 </tr>
                 <tr>
                     <td>Volumen:</td>
@@ -46,16 +61,20 @@
                 </tr>
                 <tr>
                     <td>Estado:</td>
-                    <td><input type="text" name="txtEstado" placeholder="activo/inactivo" onkeypress="return validaLetras(event)"></td>
+                    <td><select name="txtEstado">
+
+                            <option value='ACTIVO'>ACTIVO</option>;
+                            <option value='INACTIVO'>INACTIVO</option>;
+
+                        </select></td>
                 </tr>
 
             </table>
+            <br>
             <p><strong>${message}</strong></p>
             <br>
             <input type="submit" value="Modificar...">
         </form>
     </center>
-    <br><br>
-    <button type="button" class=button onclick="regresar()">Regresar</button>
 </body>
 </html>
