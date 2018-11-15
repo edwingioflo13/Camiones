@@ -15,14 +15,13 @@ import javax.servlet.http.HttpServletResponse;
 import modelo.Almacen;
 import modelo.Conexion;
 
+
 /**
  *
  * @author DIEGO ACOSTA
  */
-@WebServlet(name = "ModificarAlmacen", urlPatterns = {"/modificar_almacen.do"})
 public class ModificarAlmacen extends HttpServlet {
-
-   /**
+/**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -33,13 +32,13 @@ public class ModificarAlmacen extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
         String id = request.getParameter("txtId");
-        String nombre = request.getParameter("txtNomre");
+        String nombre = request.getParameter("txtNombre");
         String telefono = request.getParameter("txtTelefono");
         String direccion = request.getParameter("txtDireccion");
-        
-        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
+ 
+
+        if (id.equals("") || nombre.equals("") || direccion.equals("") || telefono.equals("") ) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
@@ -47,15 +46,15 @@ public class ModificarAlmacen extends HttpServlet {
         } else {
             Conexion cn = new Conexion();
             Almacen almacen = new Almacen();
-            almacen.setId(request.getIntHeader("txtId"));
-            almacen.setNombre(request.getParameter("txtNombre"));
-            almacen.setTelefono(request.getParameter("txtTelefono"));
-            almacen.setDireccion(request.getParameter("txtDireccion"));
+            almacen.setId(Integer.parseInt(id));
+            almacen.setNombre(nombre);
+            almacen.setTelefono(telefono);
+            almacen.setDireccion(direccion);
             System.out.println(almacen.toString());
             boolean res = cn.ConsultarExisteAlmacen(almacen);
             System.out.println(res);
             if (!res) {
-                String message = "No se han encontrado coincidencias con el codigo o id del almacen. Intente nuevamente";
+                String message = "No se han encontrado coincidencias con el id del almacen. Intente nuevamente";
                 request.setAttribute("message", message);
                 request.getRequestDispatcher("modificarAlmacen.jsp").forward(request, response);
             } else {

@@ -24,9 +24,9 @@
         </script>
     </head>
     <body>
-
+        <br><br><br><br>
         <h1>Registro de Almacenes:</h1>
-        <img src = "images/2.png" align="middle" width="400" height="300"/>
+        <img src = "images/6.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
         <form action="registro_almacen.do" method="post">
@@ -37,11 +37,11 @@
                 </tr>
                 <tr>
                     <td>Nombre:</td>
-                    <td><input type="text" name="txtNombre" placeholder="micomisariato" onkeypress="return validaLetras(event)"></td>
+                    <td><input type="text" name="txtNombre" placeholder="Micomisariato" onkeypress="return validaLetras(event)"></td>
                 </tr>
                 <tr>
                     <td>Telefono:</td>
-                    <td><input type="text" name="txtTelefono" placeholder="0999999999" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtTelefono" placeholder="0983513314" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Direccion:</td>

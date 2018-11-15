@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import modelo.Almacen;
 import modelo.Conexion;
+import modelo.Tienda;
 
 /**
  *
@@ -35,14 +36,16 @@ public class EliminarAlmacen extends HttpServlet {
         Conexion cn = new Conexion();
         Almacen almacen = new Almacen();
         String id = request.getParameter("txtId");
+        almacen.setId(Integer.parseInt(id));
         boolean res = cn.ConsultarExisteAlmacen(almacen);
         System.out.println(res);
+          
         if (!res) {
             String message = "No se han encontrado coincidencias con el codigo del almacen. Intente nuevamente";
             request.setAttribute("message", message);
             request.getRequestDispatcher("eliminarAlmacen.jsp").forward(request, response);
         } else {
-            int resultado = cn.eliminar(id);
+            int resultado = cn.eliminarAlmacen(Integer.parseInt(id));
             if (resultado > 0) {
                 String message = "El almacen ha sido borrado con exito!";
                 request.setAttribute("message", message);

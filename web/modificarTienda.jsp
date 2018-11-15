@@ -35,11 +35,11 @@
                 </tr>
                 <tr>
                     <td>Nombre:</td>
-                    <td><input type="text" name="txtNombre" placeholder="Superxxx" onkeypress="return validaLetras(event)"></td>
+                    <td><input type="text" name="txtNombre" placeholder="Supermaxi" onkeypress="return validaLetras(event)"></td>
                 </tr>
                 <tr>
                     <td>Telefono:</td>
-                    <td><input type="text" name="txtTelefono" placeholder="0999999999" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtTelefono" placeholder="0987654321" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Direccion:</td>

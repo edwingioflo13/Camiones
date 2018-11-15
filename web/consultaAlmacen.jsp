@@ -26,8 +26,9 @@
         </script>
     </head>
     <body>
+        <br><br><br><br>
         <h1>Mostrar todos los Almacenes:</h1>
-        <img src = "images/3.png" align="middle" width="300" height="200"/>
+        <img src = "images/6.png" align="middle" width="400" height="300"/>
         <br><br>
     <center>
         <table border width="90%" style="font-size:18px; text-align: center">
