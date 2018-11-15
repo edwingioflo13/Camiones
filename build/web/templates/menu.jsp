@@ -105,48 +105,42 @@
                 <li>
                     <a href="javascript:;">
                         <i class="fa-cube" aria-hidden="true"></i>
-                        <span class="title">Pedidos</span>
+                        <span class="title">Procesos</span>
 
                     </a>
                     <!-- Level Two-->
                     <ul>
+
                         <li>
-                            <a href="#">Registrar</a>
+                            <a href="#">Pedidos</a>
+                            <ul>
+                                <li>
+                                    <a href="/Camiones/recepcionPedidos.jsp">Recepcion de Pedidos</a>
+                                </li>
+                                <li>
+                                    <a href="/Camiones/despachoPedidos.jsp">Despacho de Pedidos</a>
+                                </li>
+                                <li>
+                                    <a href="/Camiones/consultar_pedidos.do">Ver Pedidos</a>
+                                </li>
+                            </ul>
                         </li>
+                        
                         <li>
-                            <a href="#">Buscar</a>
+                            <a href="#">Viajes</a>
+                            <ul>
+                                <li>
+                                    <a href="/Camiones/recepcionPedidos.jsp">Generar Viaje</a>
+                                </li>
+                                <li>
+                                    <a href="/Camiones/consultar_pedidos.do">Ver Viaje</a>
+                                </li>
+                            </ul>
                         </li>
-                        <li>
-                            <a href="#">Editar</a>
-                        </li>
-                        <li>
-                            <a href="#">Eliminar</a>
-                        </li>
+                        
                     </ul>
                 </li>
 
-                <li>
-                    <a href="javascript:;">
-                        <i class="fa-cube" aria-hidden="true"></i>
-                        <span class="title">Viajes</span>
-
-                    </a>
-                    <!-- Level Two-->
-                    <ul>
-                        <li>
-                            <a href="#">Registrar</a>
-                        </li>
-                        <li>
-                            <a href="#">Buscar</a>
-                        </li>
-                        <li>
-                            <a href="#">Editar</a>
-                        </li>
-                        <li>
-                            <a href="#">Eliminar</a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li>
                     <a href="javascript:;">

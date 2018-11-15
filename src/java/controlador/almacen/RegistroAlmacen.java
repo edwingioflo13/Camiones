@@ -5,8 +5,14 @@
  */
 package controlador.almacen;
 
+import controlador.camion.ConsultarCamiones;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -62,6 +68,21 @@ public class RegistroAlmacen extends HttpServlet {
                 request.getRequestDispatcher("registroAlmacen.jsp").forward(request, response);
             }
         }
+    }
+    
+    public ArrayList<Almacen> consultaAlmacen() {
+        Conexion cn = new Conexion();
+        ResultSet res = cn.ConsultarTodoAlmacen();
+        ArrayList<Almacen> almacenes= new ArrayList<Almacen>();
+        try {
+            while (res.next()) {
+                almacenes.add(new Almacen(res.getInt("ID_ALMACEN"),
+                            res.getString("NOMBRE_ALMACEN"), res.getString("TELEFONO_ALMACEN"), res.getString("DIRECCION_ALMACEN")));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return almacenes;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

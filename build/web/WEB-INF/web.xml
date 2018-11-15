@@ -80,6 +80,10 @@
         <servlet-name>EliminarTienda</servlet-name>
         <servlet-class>controlador.tienda.EliminarTienda</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegistroPedido</servlet-name>
+        <servlet-class>controlador.pedido.RegistroPedido</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>EliminarTienda</servlet-name>
         <url-pattern>/eliminar_tienda.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistroPedido</servlet-name>
+        <url-pattern>/registro_pedido.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

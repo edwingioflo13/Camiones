@@ -172,15 +172,15 @@ public class Conexion {
         }
         return false;
     }
-    
+
     public Chofer ConsultarChofer(String cedula) {
         try {
             String query = "SELECT * FROM CHOFER where CEDULA_CHOFER='" + cedula + "'";
             state = cnn.createStatement();
             res = state.executeQuery(query);
             while (res.next()) {
-                Chofer chofer = new Chofer(res.getString("CEDULA_CHOFER"),res.getString("NOMBRE_CHOFER"),res.getString("APELLIDO_CHOFER"),
-                            res.getString("DIRECCION_CHOFER"), res.getString("LICENCIA_CHOFER"), res.getFloat("SUELDO_CHOFER"));
+                Chofer chofer = new Chofer(res.getString("CEDULA_CHOFER"), res.getString("NOMBRE_CHOFER"), res.getString("APELLIDO_CHOFER"),
+                        res.getString("DIRECCION_CHOFER"), res.getString("LICENCIA_CHOFER"), res.getFloat("SUELDO_CHOFER"));
                 return chofer;
             }
         } catch (SQLException ex) {
@@ -284,7 +284,7 @@ public class Conexion {
     public int eliminarAlmacen(int cod) {
         int bandera = 0;
         try {
-            String query = "DELETE FROM almacen WHERE ID_ALMACEN = " + cod ;
+            String query = "DELETE FROM almacen WHERE ID_ALMACEN = " + cod;
             System.out.println(query);
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
@@ -297,7 +297,7 @@ public class Conexion {
     public int eliminarTienda(int cod) {
         int bandera = 0;
         try {
-            String query = "DELETE FROM tienda WHERE ID_TIENDA = " + cod ;
+            String query = "DELETE FROM tienda WHERE ID_TIENDA = " + cod;
             System.out.println(query);
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);
@@ -388,7 +388,33 @@ public class Conexion {
         return bandera;
     }
     // -------------------------------------------------------------------------
-    
+
+    // ----------------------- Pedido -----------------------------------------
+    public int insertarPedido(Pedido c) {
+        int bandera = 0;
+        try {
+            String query = "INSERT INTO PEDIDO(ID_ALMACEN, ID_TIENDA, VOLUMEN_PEDIDO, PESO_PEDIDO, FECHAENVIO_PEDIDO)"
+                    + "VALUES(" + c.getAlmacen().getId() + "," + c.getTienda().getId() + "," + c.getVolumen() + "," + c.getPeso() + ",'" + new java.sql.Date(c.getEntrega().getTime())+ "')";
+            state = cnn.createStatement();
+            bandera = state.executeUpdate(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return bandera;
+    }
+
+    public ResultSet ConsultarTodoPedido() {
+        try {
+            String query = "SELECT * FROM PEDIDO";
+            state = cnn.createStatement();
+            res = state.executeQuery(query);
+        } catch (SQLException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return res;
+    }
+
+    // -------------------------------------------------------------------------
     public String sha256(String base) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");

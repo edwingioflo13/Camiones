@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-11-2018 a las 22:48:06
+-- Tiempo de generación: 15-11-2018 a las 06:32:21
 -- Versión del servidor: 10.1.21-MariaDB
 -- Versión de PHP: 7.1.1
 
@@ -38,7 +38,7 @@ CREATE TABLE `almacen` (
 --
 
 INSERT INTO `almacen` (`ID_ALMACEN`, `NOMBRE_ALMACEN`, `TELEFONO_ALMACEN`, `DIRECCION_ALMACEN`) VALUES
-(1, '1', '996108754', 'JUAN CUEVA, ADRIAN NAVARRO');
+(1, 'SUPERMAXI', '022612733', 'LA RECOLETA');
 
 -- --------------------------------------------------------
 
@@ -59,12 +59,7 @@ CREATE TABLE `camion` (
 --
 
 INSERT INTO `camion` (`MATRICULA_CAMION`, `CEDULA_CHOFER`, `VOLUMEN_CAMION`, `PESO_CAMION`, `ESTADO_CAMION`) VALUES
-('GXA0123', '1900481357', 1000, 4000, 'INACTIVO'),
-('LJK0832', '1900481357', 1500, 5256, 'ACTIVO'),
-('PEA0123', '1900481357', 2000, 6000, 'ACTIVO'),
-('PYI0899', '1900481357', 1000, 4000, 'ACTIVO'),
-('sasas', '1900481357', 12, 12, 'ACTIVO'),
-('TDI0124', '1900481357', 1300, 5200, 'INACTIVO');
+('PYI0889', '1900481357', 1000, 1000, 'ACTIVO');
 
 -- --------------------------------------------------------
 
@@ -76,7 +71,7 @@ CREATE TABLE `chofer` (
   `CEDULA_CHOFER` varchar(10) NOT NULL,
   `NOMBRE_CHOFER` varchar(20) DEFAULT NULL,
   `APELLIDO_CHOFER` varchar(20) DEFAULT NULL,
-  `DIRECCION_CHOFER` varchar(100) DEFAULT NULL,
+  `DIRECCION_CHOFER` varchar(20) DEFAULT NULL,
   `LICENCIA_CHOFER` varchar(10) DEFAULT NULL,
   `SUELDO_CHOFER` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -86,8 +81,7 @@ CREATE TABLE `chofer` (
 --
 
 INSERT INTO `chofer` (`CEDULA_CHOFER`, `NOMBRE_CHOFER`, `APELLIDO_CHOFER`, `DIRECCION_CHOFER`, `LICENCIA_CHOFER`, `SUELDO_CHOFER`) VALUES
-('1708761703', 'EDWIN', 'FLORES', 'LA RECOLETA', 'A', 100),
-('1900481357', 'Edwin', 'Flores', 'La Recoleta', 'B', 19960600);
+('1900481357', 'Edwin', 'Flores', 'La Recoleta', 'D', 1200);
 
 -- --------------------------------------------------------
 
@@ -99,12 +93,20 @@ CREATE TABLE `pedido` (
   `ID_PEDIDO` int(11) NOT NULL,
   `ID_ALMACEN` int(11) NOT NULL,
   `ID_TIENDA` int(11) NOT NULL,
-  `ID_VIAJE` int(11) NOT NULL,
+  `ID_VIAJE` int(11) DEFAULT NULL,
   `PESO_PEDIDO` float DEFAULT NULL,
   `VOLUMEN_PEDIDO` float DEFAULT NULL,
   `FECHAENVIO_PEDIDO` date DEFAULT NULL,
   `FECHAENTREGA_PEDIDO` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `pedido`
+--
+
+INSERT INTO `pedido` (`ID_PEDIDO`, `ID_ALMACEN`, `ID_TIENDA`, `ID_VIAJE`, `PESO_PEDIDO`, `VOLUMEN_PEDIDO`, `FECHAENVIO_PEDIDO`, `FECHAENTREGA_PEDIDO`) VALUES
+(1, 1, 2, NULL, 20, 20, '2018-11-15', NULL),
+(2, 1, 2, NULL, 20, 20, '2018-11-15', NULL);
 
 -- --------------------------------------------------------
 
@@ -119,6 +121,13 @@ CREATE TABLE `tienda` (
   `DIRECCION_TIENDA` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Volcado de datos para la tabla `tienda`
+--
+
+INSERT INTO `tienda` (`ID_TIENDA`, `NOMBRE_TIENDA`, `TELEFONO_TIENDA`, `DIRECCION_TIENDA`) VALUES
+(2, 'AKI', '022615478', 'EL EJIDO');
+
 -- --------------------------------------------------------
 
 --
@@ -127,7 +136,7 @@ CREATE TABLE `tienda` (
 
 CREATE TABLE `usuario` (
   `ID_USUARIO` varchar(30) NOT NULL,
-  `PASS_USUARIO` varchar(255) DEFAULT NULL,
+  `PASS_USUARIO` varchar(256) DEFAULT NULL,
   `NOMBRE_USUARIO` varchar(30) DEFAULT NULL,
   `APELLIDO_USUARIO` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -195,6 +204,15 @@ ALTER TABLE `viaje`
   ADD PRIMARY KEY (`ID_VIAJE`),
   ADD KEY `FK_SOLICITA` (`MATRICULA_CAMION`);
 
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `pedido`
+--
+ALTER TABLE `pedido`
+  MODIFY `ID_PEDIDO` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- Restricciones para tablas volcadas
 --

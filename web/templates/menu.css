@@ -96,7 +96,6 @@ ul {
     display: inline-block;
 }
 .ace-responsive-menu li ul.sub-menu li > a > .arrow:before {
-    content: "\f105" !important;
 }
 .ace-responsive-menu > li > ul.sub-menu {
     display: none;
@@ -145,7 +144,6 @@ ul {
     font-size: 16px;
     font-family: FontAwesome;
     height: auto;
-    content: "\f104";
     font-weight: 300;
     text-shadow: none;
 }
@@ -216,10 +214,8 @@ ul[data-menu-style="accordion"] li ul.sub-menu > li {
 }
 ul[data-menu-style="accordion"] > li > a > .arrow:before {
     float: right;
-    content: "\f105";
 }
 ul[data-menu-style="accordion"] li.menu-active > a > .arrow:before {
-    content: "\f107" !important;
 }
 ul[data-menu-style="accordion"] > li > ul.sub-menu {
     position: static;
@@ -241,7 +237,6 @@ ul[data-menu-style="accordion"] li a:hover {
     background: #272727 !important;
 }
 ul[data-menu-style="accordion"] ul.sub-menu li.menu-active > a > .arrow:before {
-    content: "\f107" !important;
 }
 
 /* Vertical Menu Styles
@@ -261,7 +256,6 @@ ul[data-menu-style="vertical"] li ul.sub-menu > li {
 }
 ul[data-menu-style="vertical"] > li > a > .arrow:before {
     float: right;
-    content: "\f105";
 }
 ul[data-menu-style="vertical"] > li.menu-active {
     position:relative;
@@ -326,10 +320,8 @@ ul[data-menu-style="vertical"] li a:hover {
     }
     .ace-responsive-menu > li > a > .arrow:before {
         float: right;
-        content: "\f105";
     }
     li.menu-active > a > .arrow:before {
-        content: "\f107" !important;
     }
     .ace-responsive-menu li ul.sub-menu > li {
         width: 100%;
@@ -352,6 +344,5 @@ ul[data-menu-style="vertical"] li a:hover {
         position: static;
     }
     .ace-responsive-menu li ul.sub-menu li.menu-active > a > .arrow:before {
-        content: "\f107" !important;
     }
 }

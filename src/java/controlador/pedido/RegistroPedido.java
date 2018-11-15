@@ -3,31 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controlador.tienda;
+package controlador.pedido;
 
-import controlador.camion.ConsultarCamiones;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import modelo.Almacen;
-import modelo.Tienda;
+import modelo.Chofer;
 import modelo.Conexion;
+import modelo.Pedido;
 
 /**
  *
- * @author DIEGO ACOSTA
+ * @author t4nk
  */
-public class RegistroTienda extends HttpServlet {
+public class RegistroPedido extends HttpServlet {
 
-   /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -38,53 +33,28 @@ public class RegistroTienda extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        String id = request.getParameter("txtId");
-        String nombre = request.getParameter("txtNombre");
-        String telefono = request.getParameter("txtTelefono");
-        String direccion = request.getParameter("txtDireccion");
-        if (id.equals("") || nombre.equals("") || telefono.equals("") || direccion.equals("")) {
+        String volumen = request.getParameter("txtVolumen");
+        String peso = request.getParameter("txtPeso");
+        if (peso.equals("") || volumen.equals("")) {
             String message = "Existen campos vacios. Intente Nuevamente";
             request.setAttribute("message", message);
-            request.getRequestDispatcher("registroTienda.jsp").forward(request, response);
+            request.getRequestDispatcher("recepcionPedidos.jsp").forward(request, response);
             return;
         } else {
-
             Conexion cn = new Conexion();
-            Tienda tienda = new Tienda();
-            tienda.setId(Integer.valueOf(request.getParameter("txtId")));
-            tienda.setNombre(request.getParameter("txtNombre"));
-            tienda.setTelefono(request.getParameter("txtTelefono"));
-            tienda.setDireccion(request.getParameter("txtDireccion"));
-            System.out.println(tienda.toString());
-            
-            boolean res = cn.ConsultarExisteTienda(tienda);
-            if (!res) {
-                cn.insertarTienda(tienda);
-                String message = "La tienda ha sido registrado exitosamente";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroTienda.jsp").forward(request, response);
-            } else {
-                String message = "El id ya se encuentra regitrados en el sistema!";
-                request.setAttribute("message", message);
-                request.getRequestDispatcher("registroTienda.jsp").forward(request, response);
-            }
+            Pedido pedido = new Pedido();
+            pedido.getAlmacen().setId(Integer.valueOf(request.getParameter("txtAlmacen")));
+            pedido.getTienda().setId(Integer.valueOf(request.getParameter("txtTienda")));
+            pedido.setPeso(Float.valueOf(peso));
+            pedido.setVolumen(Float.valueOf(volumen));
+            pedido.setEntrega(new Date());
+            System.out.println(pedido.toString());
+            cn.insertarPedido(pedido);
+            String message = "El paquete ha sido registrado exitosamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("recepcionPedidos.jsp").forward(request, response);
+
         }
-    }
-    
-    public ArrayList<Tienda> consultaTienda() {
-        Conexion cn = new Conexion();
-        ResultSet res = cn.ConsultarTodoTienda();
-        ArrayList<Tienda> tiendas= new ArrayList<Tienda>();
-        try {
-            while (res.next()) {
-                tiendas.add(new Tienda(res.getInt("ID_TIENDA"),res.getString("NOMBRE_TIENDA"),res.getString("TELEFONO_TIENDA"),
-                            res.getString("DIRECCION_TIENDA")));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultarCamiones.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return tiendas;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -127,4 +97,3 @@ public class RegistroTienda extends HttpServlet {
     }// </editor-fold>
 
 }
-
