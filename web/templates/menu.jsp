@@ -70,10 +70,10 @@
                             <a href="/Camiones/consultar_tienda.do">Buscar</a>
                         </li>
                         <li>
-                            <a href="/Camiones/registroTienda.jsp">Editar</a>
+                            <a href="/Camiones/modificarTienda.jsp">Editar</a>
                         </li>
                         <li>
-                            <a href="/Camiones/registroTienda.jsp">Eliminar</a>
+                            <a href="/Camiones/eliminarTienda.jsp">Eliminar</a>
                         </li>
                     </ul>
                 </li>

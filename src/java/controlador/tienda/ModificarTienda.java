@@ -5,14 +5,8 @@
  */
 package controlador.tienda;
 
-import controlador.camion.ConsultarCamiones;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +18,9 @@ import modelo.Conexion;
  *
  * @author DIEGO ACOSTA
  */
-public class ConsultarTienda extends HttpServlet {
+public class ModificarTienda extends HttpServlet {
 
-   /**
+    /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
      *
@@ -37,23 +31,43 @@ public class ConsultarTienda extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Conexion cn = new Conexion();
-        ResultSet res = cn.ConsultarTodoTienda();
-        ArrayList<Tienda> tienda = new ArrayList<Tienda>();
-        if (res == null) {
-            String error = "No existen datos";
-            request.getSession().setAttribute("error", error);
-            request.getRequestDispatcher("error.jsp").forward(request, response);
+        String id = request.getParameter("txtId");
+        String nombre = request.getParameter("txtNombre");
+        String telefono = request.getParameter("txtTelefono");
+        String direccion = request.getParameter("txtDireccion");
+ 
+
+        if (id.equals("") || nombre.equals("") || direccion.equals("") || telefono.equals("") ) {
+            String message = "Existen campos vacios. Intente Nuevamente";
+            request.setAttribute("message", message);
+            request.getRequestDispatcher("modificarTienda.jsp").forward(request, response);
+            return;
         } else {
-            try {
-                while (res.next()) {
-                    tienda.add(new Tienda(res.getInt("Id_TIENDA"),res.getString("NOMBRE_TIENDA"),res.getString("TELEFONO_TIENDA"),
-                            res.getString("DIRECCION_TIENDA")));
+            Conexion cn = new Conexion();
+            Tienda tienda = new Tienda();
+            tienda.setId(Integer.parseInt(id));
+            tienda.setNombre(nombre);
+            tienda.setTelefono(telefono);
+            tienda.setDireccion(direccion);
+            System.out.println(tienda.toString());
+            boolean res = cn.ConsultarExisteTienda(tienda);
+            System.out.println(res);
+            if (!res) {
+                String message = "No se han encontrado coincidencias con el id de la tienda. Intente nuevamente";
+                request.setAttribute("message", message);
+                request.getRequestDispatcher("modificarTienda.jsp").forward(request, response);
+            } else {
+                int resultado = cn.modificarTienda(tienda);
+                if (resultado > 0) {
+                    String message = "La tienda ha sido modificado con exito!";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("modificarTienda.jsp").forward(request, response);
+                } else {
+                    String message = "Ha ocurrido un error. Intente nuevamente!";
+                    request.setAttribute("message", message);
+                    request.getRequestDispatcher("modificarTienda.jsp").forward(request, response);
                 }
-                request.getSession().setAttribute("tienda", tienda);
-                request.getRequestDispatcher("consultaTienda.jsp").forward(request, response);
-            } catch (SQLException ex) {
-                Logger.getLogger(ConsultarTienda.class.getName()).log(Level.SEVERE, null, ex);
+
             }
         }
     }

@@ -72,6 +72,14 @@
         <servlet-name>ModificarUsuario</servlet-name>
         <servlet-class>controlador.usuario.ModificarUsuario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ModificarTienda</servlet-name>
+        <servlet-class>controlador.tienda.ModificarTienda</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EliminarTienda</servlet-name>
+        <servlet-class>controlador.tienda.EliminarTienda</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistroCamiones</servlet-name>
         <url-pattern>/registro_camiones.do</url-pattern>
@@ -143,6 +151,14 @@
     <servlet-mapping>
         <servlet-name>ModificarUsuario</servlet-name>
         <url-pattern>/modificar_usuario.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ModificarTienda</servlet-name>
+        <url-pattern>/modificar_tienda.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EliminarTienda</servlet-name>
+        <url-pattern>/eliminar_tienda.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

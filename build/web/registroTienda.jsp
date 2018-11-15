@@ -23,9 +23,9 @@
         </script>
     </head>
     <body>
-
+         <br><br><br><br>
         <h1>Registro de Tiendas:</h1>
-        <img src = "images/2.png" align="middle" width="400" height="300"/>
+        <img src = "images/12.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
         <form action="registro_tienda.do" method="post">

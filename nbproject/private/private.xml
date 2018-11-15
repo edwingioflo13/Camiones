@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Proyectos/GitHub/Camiones/src/java/controlador/chofer/ConsultarChofer.java</file>
-            <file>file:/D:/Proyectos/GitHub/Camiones/web/Chofer/registroChofer.jsp</file>
-            <file>file:/D:/Proyectos/GitHub/Camiones/src/java/controlador/chofer/RegistroChofer.java</file>
-            <file>file:/D:/Proyectos/GitHub/Camiones/web/WEB-INF/web.xml</file>
-            <file>file:/D:/Proyectos/GitHub/Camiones/web/Chofer/consultaChofer.jsp</file>
+            <file>file:/E:/ESPE/OCTAVO%20NIVEL/DISTRIBUIDAS/Camiones/src/java/controlador/tienda/ModificarTienda.java</file>
+            <file>file:/E:/ESPE/OCTAVO%20NIVEL/DISTRIBUIDAS/Camiones/src/java/controlador/chofer/ModificarChofer.java</file>
+            <file>file:/E:/ESPE/OCTAVO%20NIVEL/DISTRIBUIDAS/Camiones/web/modificarTienda.jsp</file>
         </group>
     </open-files>
 </project-private>

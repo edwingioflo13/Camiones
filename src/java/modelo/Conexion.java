@@ -294,10 +294,10 @@ public class Conexion {
         return bandera;
     }
 
-    public int eliminarTienda(String cod) {
+    public int eliminarTienda(int cod) {
         int bandera = 0;
         try {
-            String query = "DELETE FROM tienda WHERE ID_TIENDA = '" + cod + "'";
+            String query = "DELETE FROM tienda WHERE ID_TIENDA = " + cod ;
             System.out.println(query);
             state = cnn.createStatement();
             bandera = state.executeUpdate(query);

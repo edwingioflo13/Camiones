@@ -1,6 +1,6 @@
 <%-- 
-    Document   : registroTienda
-    Created on : 14-nov-2018, 11:02:48
+    Document   : modificarTienda
+    Created on : 14-nov-2018, 18:58:43
     Author     : DIEGO ACOSTA
 --%>
 
@@ -12,8 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" href="images/icono.ico" type="image/x-icon"/>
         <link rel="stylesheet" href="estilos2.css">
-
-        <title>Registrar Tienda</title>
+        <title>Modificar Tienda</title>
         <script src="validaciones.js"></script>
         <script>
             function regresar()
@@ -23,37 +22,37 @@
         </script>
     </head>
     <body>
-         <br><br><br><br>
-        <h1>Registro de Tiendas:</h1>
+        <br><br><br><br>
+        <h1>Ingrese los nuevos datos de la tienda que desea modificar:</h1>
         <img src = "images/12.png" align="middle" width="400" height="300"/>
         <br><br><br>
     <center>
-        <form action="registro_tienda.do" method="post">
-            <table>
+        <form name="modificar" action="modificar_tienda.do" method="POST">
+       <table>
                 <tr>
                     <td>Id:</td>
                     <td><input type="text" name="txtId" placeholder="001" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Nombre:</td>
-                    <td><input type="text" name="txtNombre" placeholder="Donxxxx" onkeypress="return validaLetras(event)"></td>
+                    <td><input type="text" name="txtNombre" placeholder="Superxxx" onkeypress="return validaLetras(event)"></td>
                 </tr>
                 <tr>
                     <td>Telefono:</td>
-                    <td><input type="text" name="txtTelefono" placeholder="02222222" onkeypress="return validaNumero(event)"></td>
+                    <td><input type="text" name="txtTelefono" placeholder="0999999999" onkeypress="return validaNumero(event)"></td>
                 </tr>
                 <tr>
                     <td>Direccion:</td>
-                    <td><input type="text" name="txtDireccion" placeholder="Chillogallo" onkeypress="return validaLetras(event)"></td>
+                    <td><input type="text" name="txtDireccion" placeholder="Sangolqui" onkeypress="return validaLetras(event)"></td>
                 </tr>
               
             </table>
+            <br>
             <p><strong>${message}</strong></p>
             <br>
-            <input type="submit" value="Registrar...">
+            <input type="submit" value="Modificar...">
         </form>
     </center>
-    <br><br>
-  <%--   <button type="button" class=button onclick="regresar()">Regresar</button>--%>
+
 </body>
 </html>
